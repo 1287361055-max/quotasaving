@@ -1,38 +1,38 @@
 <div align="center">
 
-# QuotaCrux（枢决）
+# QuotaSaving（枢决）
 
 **面向预算约束的自我进化 Research Agent：将调度决策与代码生成解耦，以独立沙箱裁判、动作/模型正交路由与可回退的程序经验快照，在受限配额内持续沉淀可验证的优化增益。**
 
 [简体中文](README.md) · [English](README.en.md) · [文档总导航](docs/README.md) · [研究报告 (PDF)](docs/research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) · [项目介绍 (PDF)](docs/presentation/project-overview.pdf) · [展示海报 (PDF)](docs/poster/QuotaCrux-poster.pdf) · [演示文稿 (PDF)](docs/presentation/QuotaCrux.pdf) · [后端指南](backend/README.md)
 
-<img src="frontend/docs/screenshots/home-1440-dark.png" alt="QuotaCrux 枢决控制台总览" width="760" />
+<img src="frontend/docs/screenshots/home-1440-dark.png" alt="QuotaSaving 枢决控制台总览" width="760" />
 
 </div>
 
 ---
 
-## 为什么做 QuotaCrux？
+## 为什么做 QuotaSaving？
 
 现有的代码与研究型 Agent 在真实优化任务中常陷入两种低效困境：要么全程调用昂贵的云端大模型盲目试错，把配额消耗在重复改写与低价值分析上；要么依赖轻量模型配合纯文字经验总结，在复杂约束下原地打转甚至造成性能回退。
 
-QuotaCrux 将算法与代码优化重塑为**受预算约束、由外部裁判驱动的闭环研究过程**，依托三大核心设计打破“高成本”与“低质量”的两难：
+QuotaSaving 将算法与代码优化重塑为**受预算约束、由外部裁判驱动的闭环研究过程**，依托三大核心设计打破“高成本”与“低质量”的两难：
 
 1. **动作与模型正交解耦路由（`ActionRouter` × `ModelRouter`）** — 把“**下一步做什么**”（分析、提出候选、按任务能力取证、复验、结束）与“**这一步交给谁生成**”（轻量模型 Qwen vs. 云端强模型 `gpt-6.1-sol`）拆分为两个正交决策边界。动作层可选生成模型或专用决策模型，模型层可选升级规则或专用决策模型，并通过适配器独立组合，将强模型配额精准留给关键攻坚节点——在 `ahc026` 动作决策实验中，`gpt-6-luna` Decisions 路由费用仅占该轮已知美元支出的 **2.26%**。
-2. **可执行程序经验，而非只存文字心得** — 早期消融实证：只保存纯文字建议虽降低了单次调用费用，却让留出集最终加速比从 `1.41×` 滑落至 `1.29×`。QuotaCrux 在不可变经验快照（`v0, v1, …`）中沉淀**经沙箱实测通过的可执行程序及其成立的工作负载条件**。面对新任务时，程序先在调用任何模型前自动复验最相近的历史方案；全新任务族或未覆盖条件由分流器直交强模型攻坚，新成果原子发布并支持随时回退。
+2. **可执行程序经验，而非只存文字心得** — 早期消融实证：只保存纯文字建议虽降低了单次调用费用，却让留出集最终加速比从 `1.41×` 滑落至 `1.29×`。QuotaSaving 在不可变经验快照（`v0, v1, …`）中沉淀**经沙箱实测通过的可执行程序及其成立的工作负载条件**。面对新任务时，程序先在调用任何模型前自动复验最相近的历史方案；全新任务族或未覆盖条件由分流器直交强模型攻坚，新成果原子发布并支持随时回退。
 3. **零信任隔离裁判与全链路资源账本** — 所有候选均由外部独立裁判评测（不使用模型自评）。所有候选统一在断网、只读文件系统、非 root 的 Docker 沙箱（或 KernelBench 独立 GPU worker）中运行；性能任务执行预热 + 5 轮交替计时与严格单侧检验（`U = 0`），并在研究结束时于隐藏最终集上独立验收。每一次调用的模型角色、推理 Token、耗时及缺失用量（显式记为 `null`，不作零值填充）均完整落账，并支持一键导出可复现交付包。
 
 ---
 
 ## 设计定位与灵感：把研究决策独立出来
 
-**QuotaCrux 聚焦一个核心工程问题：在有限预算下，何时继续分析、何时动手实验、何时升级模型、何时停止，才能换取更优的可验证结果。** 我们将这些决策从生成模型中剥离成独立的决策层，与生成、任务适配和外部评测模块正交组合，并将决策本身的开销一并纳入总预算核算。
+**QuotaSaving 聚焦一个核心工程问题：在有限预算下，何时继续分析、何时动手实验、何时升级模型、何时停止，才能换取更优的可验证结果。** 我们将这些决策从生成模型中剥离成独立的决策层，与生成、任务适配和外部评测模块正交组合，并将决策本身的开销一并纳入总预算核算。
 
 ### 与 DeepSeek SuperAgent 的分层思路相通
 
 DeepSeek Harness 团队发布的 [SuperAgent 研究原型](https://github.com/deepseek-ai/dsh-superagent-prototype) 将交互与分派职责交给 Router，而把具体执行交给拥有独立会话和工作目录的 Worker，从而让调度与执行分别维护各自的上下文与工具权限（参见其[官方执行设计](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md)）。
 
-两者共享**编排与执行分离**的架构思想：SuperAgent 面向团队开发任务的持续协同，QuotaCrux 则面向单轮研究中的预算调度与实证反馈，并将决策与适配拆为三个清晰边界：
+两者共享**编排与执行分离**的架构思想：SuperAgent 面向团队开发任务的持续协同，QuotaSaving 则面向单轮研究中的预算调度与实证反馈，并将决策与适配拆为三个清晰边界：
 
 - **动作适配器：** 依据当前可见证据、剩余预算与任务允许的工具能力，决定分析、提出候选、取证、复验或结束；其中取证、复验与结束可直接触发程序执行，无需再次请求大模型。
 - **模型适配器：** 为需要生成的步骤选择模型档位；当前在统一的 `small → large` 单向升级约束下，公平对照静态规则与决策模型对升级时机的把控。
@@ -42,7 +42,7 @@ DeepSeek Harness 团队发布的 [SuperAgent 研究原型](https://github.com/de
 
 ### Jev 的启发与 Decision API
 
-决策层的设计同样受到 **TypeSafe 的 Jev** 启发：将“状态 + 类型化问题”映射为程序可直接消费的选项与概率分布，把小而明确的判断抽象为可组合的程序构件（参见 [Jev 官方介绍](https://docs.typesafe.ai/introduction)）。QuotaCrux 将其落地到研究调度循环中：专用决策模型选择下一步动作或模型档位，生成模型专注产出分析或候选代码，Runner 负责隔离执行与独立验真。
+决策层的设计同样受到 **TypeSafe 的 Jev** 启发：将“状态 + 类型化问题”映射为程序可直接消费的选项与概率分布，把小而明确的判断抽象为可组合的程序构件（参见 [Jev 官方介绍](https://docs.typesafe.ai/introduction)）。QuotaSaving 将其落地到研究调度循环中：专用决策模型选择下一步动作或模型档位，生成模型专注产出分析或候选代码，Runner 负责隔离执行与独立验真。
 
 | 决策 API 示例 | 与研究决策层相关的能力 | 本仓库状态 |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ DeepSeek Harness 团队发布的 [SuperAgent 研究原型](https://github.com/de
 
 ## Built for Better：看得见、可回退的自我进化
 
-围绕 **「Built for Better —— 打造会自我进化的智能」**，QuotaCrux 将每次沙箱评测反馈沉淀为可检验、可对比、可回退的进化资产，在后续运行中降低推理开销并提升交付性能：
+围绕 **「Built for Better —— 打造会自我进化的智能」**，QuotaSaving 将每次沙箱评测反馈沉淀为可检验、可对比、可回退的进化资产，在后续运行中降低推理开销并提升交付性能：
 
 - **两轮学习后全数突破目标（`A 批` `v0 → v19`）：** `A-01..A-06` 在第一轮学习中 `5/6` 达标；到第二轮进化沉淀为 `v19` 后，6 个任务全数提速并实现 **`6/6` 达标**（各任务最终加速比由 `1.09×–1.77×` 跃升至 `1.24×–2.03×`，累计学习费用 `$0.455`）。
 
@@ -80,11 +80,11 @@ DeepSeek Harness 团队发布的 [SuperAgent 研究原型](https://github.com/de
 
 **图 1 端到端流程。** 每次运行先在沙箱里复验经验快照中最相近的已验证程序，达标就直接交付；未达标时由分流器按经验覆盖情况选择模型档位，进入任务内研究循环。交付后，learn / online 模式把验证过的结果原子发布为新快照，供下一次运行读取。
 
-<img src="docs/assets/readme/architecture-pipeline-zh.png" alt="QuotaCrux 端到端流程：任务包与经验快照 → 模型前复验 → 经验覆盖分流器 → 轻量 / 强模型 → 任务内研究循环 → 冻结最佳与最终测试 → 交付与新快照" width="780" />
+<img src="docs/assets/readme/architecture-pipeline-zh.png" alt="QuotaSaving 端到端流程：任务包与经验快照 → 模型前复验 → 经验覆盖分流器 → 轻量 / 强模型 → 任务内研究循环 → 冻结最佳与最终测试 → 交付与新快照" width="780" />
 
 **图 2 任务内研究循环。** `ActionRouter` 决定下一步做什么，`ModelRouter` 决定生成步骤交给哪个模型档位；所有候选都由独立裁判实测，只有严格优于当前最佳才会替换。
 
-<img src="docs/assets/readme/research-loop-zh.png" alt="QuotaCrux 任务内研究循环：可见状态 → ActionRouter → ModelRouter → 生成 → 静态检查 → 独立裁判 → 严格更优才更新最佳，否则留档并继续" width="780" />
+<img src="docs/assets/readme/research-loop-zh.png" alt="QuotaSaving 任务内研究循环：可见状态 → ActionRouter → ModelRouter → 生成 → 静态检查 → 独立裁判 → 严格更优才更新最佳，否则留档并继续" width="780" />
 
 ---
 
@@ -207,7 +207,7 @@ uv run quotacrux serve           # 打开 http://127.0.0.1:8000（API 文档位�
 <details>
 <summary>控制台运行界面预览（研究运行与假设判定账本）</summary>
 
-<img src="frontend/docs/screenshots/run-1440-dark.png" alt="QuotaCrux 研究运行与假设判定账本" width="780" />
+<img src="frontend/docs/screenshots/run-1440-dark.png" alt="QuotaSaving 研究运行与假设判定账本" width="780" />
 
 </details>
 

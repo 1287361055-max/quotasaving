@@ -1,4 +1,4 @@
-# QuotaCrux Backend
+# QuotaSaving Backend
 
 Python package and CLI (`quotacrux`) implementing the [core requirements](../docs/requirements/core-requirements.md): three built-in task families, the Qwen/GPT research loop with decoupled action/model routers, an isolated Docker sandbox with external evaluation, a full resource ledger, program-extracted experience with immutable snapshots and rollback, frozen held-out and online-stream comparisons, and an HTTP API serving the dashboard. For runtime boundary conditions and initial design decisions, see [legacy-runtime-rules.md](../docs/archive/legacy-runtime-rules.md) and [initial-implementation-decisions.md](../docs/archive/initial-implementation-decisions.md).
 

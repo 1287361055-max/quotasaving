@@ -4,7 +4,7 @@
 
 ## 1. 选择结论
 
-**研究主线优先 ALE-Bench，性能优化备选 AlgoTune；有 RTX 2080 Ti 后，KernelBench 也值得做小规模预检。** 这是基于任务结构、当前架构与可用资源的接入判断，尚无 QuotaCrux 在这些 benchmark 上的效果结果。
+**研究主线优先 ALE-Bench，性能优化备选 AlgoTune；有 RTX 2080 Ti 后，KernelBench 也值得做小规模预检。** 这是基于任务结构、当前架构与可用资源的接入判断，尚无 QuotaSaving 在这些 benchmark 上的效果结果。
 
 | Benchmark | 核实规模 | 一项任务的研究内容与时长计算方式 | 资源与本项目适配 |
 | --- | --- | --- | --- |
@@ -41,9 +41,9 @@
 
 ### 复用与改动
 
-[上游评测代码](https://github.com/SakanaAI/ALE-Bench/blob/8ba16e6baf743aa8736516c45d1c52afdbd4de99/docs/evaluation.md)已有 repeated sampling 与 self-refinement，并提供 public/private evaluation；这与我们要验证的“利用反馈是否优于独立尝试”直接对应。上游按采样次数组织的对照，仍需改为 QuotaCrux 统一预算后才能回答我们的成本问题。
+[上游评测代码](https://github.com/SakanaAI/ALE-Bench/blob/8ba16e6baf743aa8736516c45d1c52afdbd4de99/docs/evaluation.md)已有 repeated sampling 与 self-refinement，并提供 public/private evaluation；这与我们要验证的“利用反馈是否优于独立尝试”直接对应。上游按采样次数组织的对照，仍需改为 QuotaSaving 统一预算后才能回答我们的成本问题。
 
-QuotaCrux 可复用任务冻结、候选记录、资源用量记录和结果导出，同时需新增原生裁判调用、可行性/分数/优化方向、最佳候选规则与预算内持续优化字段，使原生得分与优化方向独立建模（与加速比字段区分）。最终种子、参考结果、排名映射与私有裁判状态保留在可信评测侧，与候选和模型侧隔离。
+QuotaSaving 可复用任务冻结、候选记录、资源用量记录和结果导出，同时需新增原生裁判调用、可行性/分数/优化方向、最佳候选规则与预算内持续优化字段，使原生得分与优化方向独立建模（与加速比字段区分）。最终种子、参考结果、排名映射与私有裁判状态保留在可信评测侧，与候选和模型侧隔离。
 
 CPU 串行小规模运行即可预检；上游建议统一机器来比较性能。本地试验应报告实际机器与裁判版本，不直接套用另一台硬件的时间或排名结论。
 
@@ -58,7 +58,7 @@ CPU 串行小规模运行即可预检；上游建议统一机器来比较性能�
 - [`convolve_1d`](https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/convolve_1d/convolve_1d.py)：NumPy/SciPy 一维卷积，有数值误差约束，适合比较不同实现和规模下的算法选择。
 - [`pagerank`](https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/pagerank/pagerank.py)：NetworkX/NumPy 图计算，验证分数归一性及参考容差，适合观察数据结构与计算路径改进。
 
-它们没有 GPU 必需条件，但当前 QuotaCrux 的标准库、1 GB 沙箱需要按科学计算场景扩展。上游配置给验证 worker 的内存上限为 14 GB（并非每题最低需求，具体按选定题目预检峰值）。数据按任务动态生成或加载，全任务总大小未另行估算。
+它们没有 GPU 必需条件，但当前 QuotaSaving 的标准库、1 GB 沙箱需要按科学计算场景扩展。上游配置给验证 worker 的内存上限为 14 GB（并非每题最低需求，具体按选定题目预检峰值）。数据按任务动态生成或加载，全任务总大小未另行估算。
 
 接入时保留上游的输入生成、数值验证和函数计时语义，固定 BLAS/线程配置；将安装、导入、编译与目标函数耗时分别记录。当前 EffiBench 的完整进程计时不可直接当作 AlgoTune 分数。上游汇总使用加速比调和平均，本地子集应同时列逐题结果并明确协议差异。
 
@@ -74,7 +74,7 @@ CPU 串行小规模运行即可预检；上游建议统一机器来比较性能�
 
 [当前 Triton 支持范围](https://github.com/triton-lang/triton#compatibility)要求 NVIDIA compute capability 8.0+，而 RTX 2080 Ti 为 7.5。因此预检优先选用 KernelBench 的 CUDA C++ 后端（而非默认的 Triton 后端），并在目标环境下实际验证 PyTorch/CUDA 构建兼容性。
 
-建议先选择一个显存可容纳的 Level 1 算子，检查目标架构的 PyTorch/CUDA 构建、编译器和校验器；随后再选少量 Level 2 融合任务。基线测量需固定在该 RTX 2080 Ti 节点上实测完成，不跨硬件代际套用参考耗时；正确性、同步、预热与 CUDA 计时均由裁判完成，并配置 QuotaCrux 自身的长时预算控制。
+建议先选择一个显存可容纳的 Level 1 算子，检查目标架构的 PyTorch/CUDA 构建、编译器和校验器；随后再选少量 Level 2 融合任务。基线测量需固定在该 RTX 2080 Ti 节点上实测完成，不跨硬件代际套用参考耗时；正确性、同步、预热与 CUDA 计时均由裁判完成，并配置 QuotaSaving 自身的长时预算控制。
 
 ### MLE-bench 与 RE-Bench
 

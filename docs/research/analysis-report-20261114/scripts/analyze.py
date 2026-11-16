@@ -328,7 +328,7 @@ def deep_analysis(data):
             'source_report':metric['source_report']}
         movement_energy['runs'].append(item)
         run['box_movement_energy']=item
-    return {'schema_version':1,'project':'QuotaCrux / 枢决','ahc026_movement_energy':movement_energy,
+    return {'schema_version':1,'project':'QuotaSaving / 枢决','ahc026_movement_energy':movement_energy,
         'definitions':{
             'candidate_outcomes':'Mutually exclusive categories on the single dev evaluation per model candidate: correct_above_c0 = correct and score > c0; correct_not_above_c0 = correct and score <= c0; failed = incorrect or execution failure.',
             'new_best':'run_validation.result.best_replaced; distinct from exceeding c0.',
@@ -371,8 +371,8 @@ def report_font(extra_text: str = ''):
         builder.setupGlyf(quadratic_glyphs)
         builder.setupHorizontalMetrics(original_font['hmtx'].metrics)
         builder.setupHorizontalHeader(ascent=original_font['hhea'].ascent, descent=original_font['hhea'].descent)
-        builder.setupNameTable({'familyName':'QuotaCrux Report Sans','styleName':'Regular',
-            'uniqueFontIdentifier':'QuotaCrux Report Sans Regular','fullName':'QuotaCrux Report Sans Regular',
+        builder.setupNameTable({'familyName':'QuotaSaving Report Sans','styleName':'Regular',
+            'uniqueFontIdentifier':'QuotaSaving Report Sans Regular','fullName':'QuotaSaving Report Sans Regular',
             'psName':'QuotaCruxReportSans-Regular','version':'Version 1.0',
             'copyright':original_font['name'].getDebugName(0) or '',
             'licenseDescription':original_font['name'].getDebugName(13) or '',
@@ -384,7 +384,7 @@ def report_font(extra_text: str = ''):
         builder.font['head'].created = builder.font['head'].modified = 2082844800
         builder.save(converted)
     font_manager.fontManager.addfont(str(converted))
-    return 'QuotaCrux Report Sans'
+    return 'QuotaSaving Report Sans'
 
 
 def style():
@@ -399,7 +399,7 @@ def style():
 
 def save(fig,name):
     fig.savefig(FIGURES/(name+'.pdf'),bbox_inches='tight',
-        metadata={'Title':name,'Author':'QuotaCrux / 枢决','CreationDate':None,'ModDate':None})
+        metadata={'Title':name,'Author':'QuotaSaving / 枢决','CreationDate':None,'ModDate':None})
     fig.savefig(FIGURES/(name+'.png'),dpi=190,bbox_inches='tight')
     plt.close(fig)
 

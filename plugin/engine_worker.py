@@ -1,4 +1,4 @@
-"""DSH transport adapter around the real QuotaCrux Runner; JSONL over stdio.
+"""DSH transport adapter around the real QuotaSaving Runner; JSONL over stdio.
 
 No provider credentials enter this process. Model requests are executed by the
 owning DSH plugin; candidate execution and verification stay in the core sandbox.

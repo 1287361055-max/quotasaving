@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "project": "QuotaCrux / 枢决",
+  "project": "QuotaSaving / 枢决",
   "ahc026_movement_energy": {
     "quantity": "ahc026 box-movement energy expenditure V; not CPU or device energy",
     "per_case_score_formula": "score = max(1, 10000 - V)",

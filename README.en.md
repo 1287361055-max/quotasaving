@@ -1,38 +1,38 @@
 <div align="center">
 
-# QuotaCrux
+# QuotaSaving
 
 **A self-evolving, budget-aware research agent: decoupling routing decisions from generation, backing every verdict with an isolated sandbox judge, and capturing rollback-safe executable experience snapshots.**
 
 [简体中文](README.md) · [English](README.en.md) · [Docs Index](docs/README.md) · [Research Report (PDF)](docs/research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) · [Project Overview (PDF)](docs/presentation/project-overview.pdf) · [Poster (PDF)](docs/poster/QuotaCrux-poster.pdf) · [Slide Deck (PDF)](docs/presentation/QuotaCrux.pdf) · [Backend Guide](backend/README.md)
 
-<img src="frontend/docs/screenshots/home-1440-dark.png" alt="QuotaCrux dashboard overview" width="760" />
+<img src="frontend/docs/screenshots/home-1440-dark.png" alt="QuotaSaving dashboard overview" width="760" />
 
 </div>
 
 ---
 
-## Why QuotaCrux?
+## Why QuotaSaving?
 
 Autonomous coding and research agents typically break down in one of two ways: they either burn frontier-model quota on repetitive trial-and-error, or stall on smaller models with unstructured prose reflections that fail to generalize—and sometimes regress performance.
 
-QuotaCrux frames algorithm and code optimization as a **budget-governed, empirically falsifiable research loop** built on three design choices:
+QuotaSaving frames algorithm and code optimization as a **budget-governed, empirically falsifiable research loop** built on three design choices:
 
 1. **Orthogonal Action & Model Routing (`ActionRouter` × `ModelRouter`)** — Decouples *what step to take next* (analyze, propose a candidate, gather task-specific profile evidence, re-validate, or finish) from *which model tier generates the artifact* (`small` local/hosted Qwen vs. `large` `gpt-6.1-sol`). Action routing can use either the generation LLM or a dedicated decision model; model routing swaps between an escalation rule and a decision model via clean adapters. On `ALE-Bench ahc026`, `gpt-6-luna` Decisions routing accounted for just **2.26%** of recorded USD spend.
-2. **Executable Program Experience, Not Prose Tips** — Early ablations established that storing prose-only advice cut API spend but *degraded* held-out speedup (`1.41× → 1.29×`). QuotaCrux persists **sandbox-verified programs paired with workload applicability conditions** in immutable snapshots (`v0, v1, …`). Incoming tasks re-validate closest past wins in Docker *before* touching any LLM, triage unseen task families directly to the large tier, and atomically publish verified improvements with instant rollback.
+2. **Executable Program Experience, Not Prose Tips** — Early ablations established that storing prose-only advice cut API spend but *degraded* held-out speedup (`1.41× → 1.29×`). QuotaSaving persists **sandbox-verified programs paired with workload applicability conditions** in immutable snapshots (`v0, v1, …`). Incoming tasks re-validate closest past wins in Docker *before* touching any LLM, triage unseen task families directly to the large tier, and atomically publish verified improvements with instant rollback.
 3. **Zero-Trust Sandbox Evaluation & Auditable Ledger** — Evaluation is strictly external. Candidates execute in network-disabled, read-only, non-root Docker containers (or a dedicated GPU worker for KernelBench), timed alternately against the baseline (`U = 0`), with one final pass over hidden test cases. Every model role, reasoning token, wall-clock latency, and missing billing field (`null` when unavailable, not zero-filled) lands in a reproducible ledger.
 
 ---
 
 ## Design & Inspiration: A Separate Research Decision Layer
 
-**QuotaCrux asks a focused systems question: within a tight budget, when should an agent analyze further, test a candidate, escalate to a stronger model, or stop to maximize verified gains?** We elevate those choices into a first-class decision layer—composed independently with generation, task adaptation, and external judging—and charge decision overhead directly against the shared budget.
+**QuotaSaving asks a focused systems question: within a tight budget, when should an agent analyze further, test a candidate, escalate to a stronger model, or stop to maximize verified gains?** We elevate those choices into a first-class decision layer—composed independently with generation, task adaptation, and external judging—and charge decision overhead directly against the shared budget.
 
 ### A Shared Separation of Concerns with DeepSeek SuperAgent
 
 The DeepSeek Harness team's [SuperAgent research prototype](https://github.com/deepseek-ai/dsh-superagent-prototype) separates user interaction and task dispatch (Router) from isolated execution environments and working trees (Workers), allowing orchestration and execution to manage distinct contexts and tool permissions (see its [official execution design](https://github.com/deepseek-ai/dsh-superagent-prototype/blob/main/docs/003-execution.md)).
 
-We share that principle of **separating orchestration from execution**. While SuperAgent targets continuous team development workflows, QuotaCrux applies the boundary to single-episode budget allocation and empirical verification across three adapter seams:
+We share that principle of **separating orchestration from execution**. While SuperAgent targets continuous team development workflows, QuotaSaving applies the boundary to single-episode budget allocation and empirical verification across three adapter seams:
 
 - **Action adapter:** Chooses `analyze`, `propose_candidate`, `get_evidence` (profiling), `run_validation`, or `finish` from visible evidence, remaining budget, and task capabilities; `get_evidence`, `run_validation`, and `finish` dispatch directly to program execution without an extra generation call.
 - **Model adapter:** Selects the model tier when generation is required. Both rule-based and decision-model routers enforce the same irreversible `small → large` escalation constraint, isolating *when* escalation happens as the controlled variable.
@@ -42,7 +42,7 @@ Because these seams isolate routing cleanly, we hold the task suite, generator w
 
 ### Inspiration from Jev and the Decision API Ecosystem
 
-The decision layer also draws from **TypeSafe's Jev**: mapping `"state + typed question"` to structured choices and probabilities that application code can consume cleanly ([Jev introduction](https://docs.typesafe.ai/introduction)). QuotaCrux applies that pattern to research control flow—a dedicated decision model selects the next action or tier, a generator writes analysis or code, and the Runner validates everything inside Docker.
+The decision layer also draws from **TypeSafe's Jev**: mapping `"state + typed question"` to structured choices and probabilities that application code can consume cleanly ([Jev introduction](https://docs.typesafe.ai/introduction)). QuotaSaving applies that pattern to research control flow—a dedicated decision model selects the next action or tier, a generator writes analysis or code, and the Runner validates everything inside Docker.
 
 | Decision API example | Relevant capability | Status in this repository |
 | --- | --- | --- |
@@ -56,13 +56,13 @@ Adding a new decision provider only requires an adapter mapping its request/resp
 
 ## Built for Better: Inspectable, Rollback-Safe Self-Evolution
 
-Aligned with the **"Built for Better — Building Self-Evolving Intelligence"** principle, QuotaCrux turns every sandbox outcome into inspectable, diffable, rollback-safe evolutionary state—so subsequent runs reduce LLM cost and improve verified performance:
+Aligned with the **"Built for Better — Building Self-Evolving Intelligence"** principle, QuotaSaving turns every sandbox outcome into inspectable, diffable, rollback-safe evolutionary state—so subsequent runs reduce LLM cost and improve verified performance:
 
 - **Cross-round progression to 100% attainment (`A-Batch` `v0 → v19`):** Across `A-01..A-06`, Round 1 met `5/6` speedup targets; by Round 2 (`v19`), every task improved further to **`6/6` attainment** (per-task final speedups rising from `1.09×–1.77×` to `1.24×–2.03×`; `$0.455` cumulative learning cost).
 
 <img src="docs/assets/readme/evolution-abatch-en.png" alt="A-Batch two-round self-evolution speedups per task" width="780" />
 
-- **Verified generalization on sealed suites & live streams:** On the sealed `D-Batch` held-out suite, switching to `v19` raised target attainment from `15/18` to **`18/18`**, median speedup from `1.20×` to **`1.73×`**, and delivered **`18/18` runs with zero LLM calls (`$0.000`)**. On `S-Stream` (seeded with `groupagg`-only `v19` plus unseen `logstats`/`intervals` tasks), QuotaCrux escalated on first encounters and solved **`30/30` follow-up tasks with zero LLM calls** (vs. `9/30` without memory), cutting GPT requests by **78%** (`27 → 6`).
+- **Verified generalization on sealed suites & live streams:** On the sealed `D-Batch` held-out suite, switching to `v19` raised target attainment from `15/18` to **`18/18`**, median speedup from `1.20×` to **`1.73×`**, and delivered **`18/18` runs with zero LLM calls (`$0.000`)**. On `S-Stream` (seeded with `groupagg`-only `v19` plus unseen `logstats`/`intervals` tasks), QuotaSaving escalated on first encounters and solved **`30/30` follow-up tasks with zero LLM calls** (vs. `9/30` without memory), cutting GPT requests by **78%** (`27 → 6`).
 
 <img src="docs/assets/readme/evolution-zero-llm-en.png" alt="Zero-LLM re-validation delivery rates across D-Batch and S-Stream" width="780" />
 
@@ -80,11 +80,11 @@ Aligned with the **"Built for Better — Building Self-Evolving Intelligence"** 
 
 **Figure 1, end-to-end flow.** Each run first re-checks the closest verified programs from the experience snapshot in the sandbox and delivers right away if one meets the target. Otherwise the triage step picks a model tier from how well the snapshot covers the task, and the within-task research loop takes over. After delivery, learn and online modes publish the verified results as a new snapshot for the next run.
 
-<img src="docs/assets/readme/architecture-pipeline-en.png" alt="QuotaCrux end-to-end flow: task package and snapshot → pre-model re-check → triage → small or cloud model → research loop → frozen best and final test → delivery and new snapshot" width="780" />
+<img src="docs/assets/readme/architecture-pipeline-en.png" alt="QuotaSaving end-to-end flow: task package and snapshot → pre-model re-check → triage → small or cloud model → research loop → frozen best and final test → delivery and new snapshot" width="780" />
 
 **Figure 2, within-task research loop.** `ActionRouter` decides what to do next and `ModelRouter` decides which model tier generates. Every candidate is measured by the independent judge and replaces the current best only when it is strictly better.
 
-<img src="docs/assets/readme/research-loop-en.png" alt="QuotaCrux within-task research loop: visible state → ActionRouter → ModelRouter → generate → static check → independent judge → update best only if strictly better, otherwise keep on record and continue" width="780" />
+<img src="docs/assets/readme/research-loop-en.png" alt="QuotaSaving within-task research loop: visible state → ActionRouter → ModelRouter → generate → static check → independent judge → update best only if strictly better, otherwise keep on record and continue" width="780" />
 
 ---
 
@@ -207,7 +207,7 @@ uv run quotacrux serve           # Open http://127.0.0.1:8000 (API docs at /docs
 <details>
 <summary>Web Dashboard Run Inspector & Verdict Ledger Preview</summary>
 
-<img src="frontend/docs/screenshots/run-1440-dark.png" alt="QuotaCrux Run Inspector and Verdict Ledger" width="780" />
+<img src="frontend/docs/screenshots/run-1440-dark.png" alt="QuotaSaving Run Inspector and Verdict Ledger" width="780" />
 
 </details>
 

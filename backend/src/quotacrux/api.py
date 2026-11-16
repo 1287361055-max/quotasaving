@@ -16,7 +16,7 @@ from . import compare, config, db, memory, report, research_views, taskpkg
 from .agent.runner import RunBusy, RunOptions, Runner
 
 config.load_dotenv()
-app = FastAPI(title="QuotaCrux / 枢决", version="0.1.0")
+app = FastAPI(title="QuotaSaving / 枢决", version="0.1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
                    allow_methods=["*"], allow_headers=["*"])
 

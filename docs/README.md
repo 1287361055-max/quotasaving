@@ -1,8 +1,8 @@
-# QuotaCrux（枢决） 文档导航
+# QuotaSaving（枢决） 文档导航
 
 第一次了解项目，从[项目介绍](presentation/project-overview.md)开始。开发时按“赛题 → 产品需求 → 核心需求 → 设计 → 评测 → 结果 → 验收”查阅。
 
-项目名称统一为 **QuotaCrux（枢决）**，包名与命令使用 `quotacrux`；当前仓库链接使用 `QuotaCrux`。
+项目名称统一为 **QuotaSaving（枢决）**，包名与命令使用 `quotacrux`；当前仓库链接使用 `QuotaSaving`。
 
 ## 文档之间的关系
 

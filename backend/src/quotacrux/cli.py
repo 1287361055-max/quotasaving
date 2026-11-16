@@ -411,7 +411,7 @@ def main(argv: list[str] | None = None) -> None:
     eb = tsub.add_parser("import-effibench", help="import a pinned EffiBench-X Python problem (downloads its shard)")
     eb.add_argument("problem", help="source/id, e.g. codeforces/2104A or leetcode/3188")
     eb.add_argument("--split", choices=["A", "B", "C", "D", "smoke"], required=True,
-                    help="QuotaCrux task split; separate from upstream's single test split")
+                    help="QuotaSaving task split; separate from upstream's single test split")
     eb.add_argument("--dev-cases", type=int, default=20)
     eb.add_argument("--case-limit", type=int, help="explicit pilot subset; default: all unique cases")
     eb.add_argument("--parquet", help="use a local shard instead of downloading; pinned SHA256 still checked")

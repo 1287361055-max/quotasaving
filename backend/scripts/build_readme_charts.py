@@ -1,4 +1,4 @@
-"""Generate bilingual README data visualizations for QuotaCrux.
+"""Generate bilingual README data visualizations for QuotaSaving.
 
 Each figure targets ~9.6 in width with 10.5–14 pt typography and generous vertical
 aspect ratios (1.3:1 to 2.2:1) so charts remain crisp and legible inside GitHub

@@ -68,7 +68,7 @@ uv run quotacrux export-run RUN_ID --bundle ../artifacts/RUN_ID
 
 ## 各裁判的边界
 
-ALE 使用数据集内的原始 `gen` / `vis`，Cargo.lock 锁定 Rust 依赖。初始程序是 QuotaCrux 提供的简单可行方案：`ahc024` 输出原图，`ahc026` 按顺序移除箱子并把遮挡箱移到较短栈。得分与上述初始程序比较。候选沿用 1 CPU、1 GiB、无网络、只读容器；单用例时间上限取题目约束与运行配置较小者。裁判在独立镜像内运行，候选容器没有裁判文件、期望答案或最终套件。
+ALE 使用数据集内的原始 `gen` / `vis`，Cargo.lock 锁定 Rust 依赖。初始程序是 QuotaSaving 提供的简单可行方案：`ahc024` 输出原图，`ahc026` 按顺序移除箱子并把遮挡箱移到较短栈。得分与上述初始程序比较。候选沿用 1 CPU、1 GiB、无网络、只读容器；单用例时间上限取题目约束与运行配置较小者。裁判在独立镜像内运行，候选容器没有裁判文件、期望答案或最终套件。
 
 AlgoTune 固定 NumPy 2.5.4、SciPy 1.18.1、NetworkX 3.7，单线程。仅移除上游 Task 注册器/基类和装饰器，保留这两题的生成、参考解和校验方法；初始程序提取 `solve` 及初始化代码。输入以 JSON + 数值数组 base64 传递，不使用 pickle。校验器额外拒绝 NaN/Inf 和错误数组形状。
 

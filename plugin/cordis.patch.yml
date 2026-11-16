@@ -5,7 +5,7 @@
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: quotacrux-p0
-        name: QuotaCrux · 历史回放
+        name: QuotaSaving · 历史回放
         description: 查看真实路由记录，并在同一项目的会话间共享研究证据。
         order: 10
         plugins:
@@ -16,7 +16,7 @@
       name: '@deepseek-ai/dsh-agent-preset'
       config:
         id: quotacrux-live
-        name: QuotaCrux · 本地优先
+        name: QuotaSaving · 本地优先
         description: 正常处理所有请求，默认本机 Gemma；远程求助作为工具调用，现有优化引擎按需使用。
         order: 9
         plugins:

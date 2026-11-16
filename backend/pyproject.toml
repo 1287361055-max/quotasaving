@@ -1,7 +1,7 @@
 [project]
 name = "quotacrux"
 version = "0.1.0"
-description = "QuotaCrux shared core: execute, verify, learn from runs"
+description = "QuotaSaving shared core: execute, verify, learn from runs"
 authors = [
     { name = "Snowball_233", email = "wangrb.qq@outlook.com" }
 ]

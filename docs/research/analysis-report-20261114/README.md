@@ -1,4 +1,4 @@
-# QuotaCrux / 枢决：研究优化实验报告
+# QuotaSaving / 枢决：研究优化实验报告
 
 **[阅读 PDF（19 页，v1.2）](output/pdf/quotacrux-research-report.pdf)**
 
@@ -68,4 +68,4 @@ Mac 归档（提交 `5962203`）可单独重新分析：
 
 Mac 归档已完成导出恢复与校验（189 项清单、24 份候选、12 份最优程序与 16 份任务源码哈希一致，53 份归档程序通过语法检查；分析状态为 `verified_archive`，恢复记录见 [recovery.json](../mac-exploratory-20261114/recovery.json)）。
 
-构建检验覆盖归档 SHA256、原始数据重算、LaTeX 无警告编译与字体嵌入。源码仓库为 QuotaCrux（归档 JSON 中保留历史标识 RouteEvo）。
+构建检验覆盖归档 SHA256、原始数据重算、LaTeX 无警告编译与字体嵌入。源码仓库为 QuotaSaving（归档 JSON 中保留历史标识 RouteEvo）。

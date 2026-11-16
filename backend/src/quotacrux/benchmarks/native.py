@@ -77,7 +77,7 @@ def package(family: str, problem: str, split: str, source: dict, contract: str, 
                 "source": source, "problem": {"key": problem, "title": problem}, "files": files,
                 "target": {"min_speedup": None if objective["metric"] == "score" else 1.10, **objective},
                 "dev_params": {"cases": len(dev)}, "final_params": {"cases": len(final)}, "native": settings,
-                "selection": {"dev_cases": len(dev), "final_cases": len(final)}, "notes": "QuotaCrux research subset"}
+                "selection": {"dev_cases": len(dev), "final_cases": len(final)}, "notes": "QuotaSaving research subset"}
     try:
         return taskpkg.register_package(tmp, manifest, config.TASK_DATA_DIR)
     except BaseException:

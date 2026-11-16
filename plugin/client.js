@@ -6,7 +6,7 @@ window.__ModuleLoader__.load({
     const dictionaries = {
       zh: { engine: '枢决接管', local: '本地', remote: '远程', validation: '候选验证', reuse: '经验复验', times: '次',
         details: '远程原因与具体工作见本轮工具调用记录', saved: '上次真实运行' },
-      en: { engine: 'QuotaCrux', local: 'Local', remote: 'Remote', validation: 'Validation', reuse: 'Reuse checks', times: 'calls',
+      en: { engine: 'QuotaSaving', local: 'Local', remote: 'Remote', validation: 'Validation', reuse: 'Reuse checks', times: 'calls',
         details: 'Remote reasons and contributions are in the tool calls', saved: 'Previous live run' },
     };
     function StatusLine(props) {

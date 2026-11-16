@@ -109,7 +109,7 @@ def timing_figure(data: dict) -> None:
     target = HERE / 'figures'
     target.mkdir(parents=True, exist_ok=True)
     fig.savefig(target / 'mac_timings.pdf', bbox_inches='tight',
-        metadata={'Title': 'Mac exploratory solve timings', 'Author': 'QuotaCrux / 枢决',
+        metadata={'Title': 'Mac exploratory solve timings', 'Author': 'QuotaSaving / 枢决',
                   'CreationDate': None, 'ModDate': None})
     fig.savefig(target / 'mac_timings.png', dpi=190, bbox_inches='tight')
     plt.close(fig)

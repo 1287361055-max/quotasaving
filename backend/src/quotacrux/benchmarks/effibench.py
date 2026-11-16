@@ -1,4 +1,4 @@
-"""Pinned EffiBench-X Python tasks, adapted to QuotaCrux's runtime optimization protocol."""
+"""Pinned EffiBench-X Python tasks, adapted to QuotaSaving's runtime optimization protocol."""
 from __future__ import annotations
 
 import ast
@@ -27,7 +27,7 @@ def _stdlib_only(code: str) -> None:
     check_code(code, config.RunLimits().max_code_bytes)
     names = {n.id for n in ast.walk(ast.parse(code)) if isinstance(n, ast.Name)}
     if names & {"SortedList", "SortedDict", "SortedSet", "sortedcontainers"}:
-        raise ValueError("this task requires sortedcontainers; QuotaCrux supports the Python standard library only")
+        raise ValueError("this task requires sortedcontainers; QuotaSaving supports the Python standard library only")
 
 
 def import_problem(problem: str, *, split: str, dev_cases: int = 20, case_limit: int | None = None,
@@ -135,7 +135,7 @@ def build_record(record: dict, *, split: str, dev_cases: int, provenance: dict,
         profile = {"problem": key, "memory_key": memory_key, "interface": record["type"], "cases": dev_cases,
                    "input_bytes": sum(len(c["input"].encode()) for c in selected[:dev_cases])}
         contract = (f"EffiBench-X: {record['title']} ({key})\n\n{record['description_md']}\n\n"
-                    "QuotaCrux interface: submit a complete Python 3.12 standard-library program reading stdin and writing stdout. "
+                    "QuotaSaving interface: submit a complete Python 3.12 standard-library program reading stdin and writing stdout. "
                     "For functional tasks, initial.py includes the upstream serializer and runner. Preserve its I/O contract. "
                     "Each test case runs in a fresh process. Optimize the provided reference program.\n")
         # Public examples are dev-only and bounded; final inputs/outputs never enter model context.
@@ -207,7 +207,7 @@ def presentation(manifest: dict) -> dict:
         "validation": "冻结用例逐例执行 + 数据集 evaluator 在独立沙箱中校验",
         "agent_notes": "The evaluator checks every case in the selected suite with the dataset's checker. "
                        "One timing sample is the sum of fresh-process runtimes over the entire suite; "
-                       "cProfile evidence uses the first dev case only. This is the QuotaCrux optimization protocol.",
+                       "cProfile evidence uses the first dev case only. This is the QuotaSaving optimization protocol.",
     }
 
 

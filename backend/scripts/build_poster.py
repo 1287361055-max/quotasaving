@@ -1,8 +1,8 @@
-"""Build the 80 x 180 cm QuotaCrux (枢决) poster (PDF). Everything on it is typeset here: type, numbers and charts.
+"""Build the 80 x 180 cm QuotaSaving (枢决) poster (PDF). Everything on it is typeset here: type, numbers and charts.
 
     uv run --with segno python scripts/build_poster.py [--out ../docs/poster/QuotaCrux-poster.pdf]
 
-Data: the QuotaCrux research report v1.1 (PR #19, docs/research/analysis-report-20261114, generated/analysis.json,
+Data: the QuotaSaving research report v1.1 (PR #19, docs/research/analysis-report-20261114, generated/analysis.json,
 deep-analysis.json, mac-analysis.json and sections 04-07). Values are copied below with their source so the poster
 can be rebuilt before that branch is merged.
 """
@@ -58,7 +58,7 @@ def energy_bars() -> str:
             f'<text x="8" y="23" class="bl" fill="{INK}">初始程序</text>'
             f'<rect x="0" y="42" width="{best:.1f}" height="26" fill="{ACCENT}"/>'
             f'<text x="{best + 10:.1f}" y="63" class="bv" fill="{INK}">{ENERGY_BEST:,}</text>'
-            f'<text x="8" y="61" class="bl" fill="#fff">QuotaCrux</text></svg>')
+            f'<text x="8" y="61" class="bl" fill="#fff">QuotaSaving</text></svg>')
 
 
 def case_chart() -> str:
@@ -131,7 +131,7 @@ def page() -> str:
     fmt_x = lambda v: f"{v:.1f}×" if v >= 10 else f"{v:.2f}×"  # noqa: E731
     algo = "".join(f'<div class="algo"><div class="big">{fmt_x(sp)}</div><div class="cap">{name} 提速</div>'
                    f'<div class="how">{how}</div>{algo_bars(b, c)}</div>' for name, sp, b, c, how in ALGO)
-    return f"""<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>QuotaCrux 枢决 poster</title>
+    return f"""<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>QuotaSaving 枢决 poster</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900{CJK_WEB}&display=block"><style>
 @page {{ size: 800mm 1800mm; margin: 0; }}
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
@@ -175,7 +175,7 @@ h2 {{ font-size: 36mm; font-weight: 600; letter-spacing: -0.5mm; margin-top: 5mm
 </style></head><body><div class="page">
 
 <div>
-  <div class="head"><div class="title">QuotaCrux</div><div class="cn">枢决</div></div>
+  <div class="head"><div class="title">QuotaSaving</div><div class="cn">枢决</div></div>
   <div class="sub"><div>预算有限的研究 Agent：小模型先跑，卡住才升级</div><span>●</span></div>
 </div>
 
@@ -208,7 +208,7 @@ h2 {{ font-size: 36mm; font-weight: 600; letter-spacing: -0.5mm; margin-top: 5mm
   <div><div class="big">&gt;99%</div><div class="cap">合格率</div></div>
 </div>
 
-<div class="foot"><div class="t">QuotaCrux 枢决 · 扫码查看代码与实验报告</div>{qr_svg()}</div>
+<div class="foot"><div class="t">QuotaSaving 枢决 · 扫码查看代码与实验报告</div>{qr_svg()}</div>
 </div></body></html>"""
 
 

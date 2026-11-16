@@ -30,7 +30,7 @@
 - 选样在模型调用前已在 [issue #1](https://github.com/bohack-2026-hw/QuotaCrux/issues/1#issuecomment-6870725713) 中锁定：从已缓存分片选取两道 io 与两道 functional 题以覆盖不同程序接口；该样本属方便抽样，未按难度分层。
 - 原始分片 `data/test-00009-of-00020.parquet`，7,321,349 bytes，SHA256 `958c052cd9b3f61c70acd476bb3c75bf1e62f574dae5b43ba1e7fcde2aebacdc`。
 - 每题输入先去重，再按输入 SHA256 排序，前 5 个作 dev、后 15 个作 final；完整用例 ID、文件哈希和来源在 [plan.json](plan.json)。`leetcode/3188` 的 100 个原始用例有 92 个唯一输入，其余三题均为 100 个。
-- QuotaCrux split 为 `B`，`eval` 模式，空经验快照 `v0`。B 是本地实验标记，上游只有 test split；本轮不发布学习经验。
+- QuotaSaving split 为 `B`，`eval` 模式，空经验快照 `v0`。B 是本地实验标记，上游只有 test split；本轮不发布学习经验。
 - 小模型：AIPing `Qwen3.8-27B`，`enable_thinking=false`，`json_object`，最多 8192 output tokens；大模型：OpenAI `gpt-6.1-sol`，`reasoning_effort=xhigh`，最多 32000 output tokens。
 - 使用 `upgrade-rule-v2`：从小模型开始，连续两个候选未达目标或小模型连续三次请求未达目标后升级。提示词为 `agent-prompt-v3`；完整配置与哈希在 [results.json](results.json)。没有接入同时迭代中的 Decisions 或 `feat/shared-core` 新首选模型规则。
 - 每题最多 6 次模型请求、4 个候选、300 秒研究循环；单次请求上限 120 秒（连接超时 10 秒）、单次程序测量上限 10 秒。最终评测位于研究循环之后，包含在上表总耗时中。四题都没有超过循环预算。

@@ -69,7 +69,7 @@ export function apply(ctx, input = {}) {
     },
   }));
   ctx.effect(() => ctx.tools.register({
-    name: 'research_optimize', description: '可选地运行现有 QuotaCrux 核心的真实代码性能实验。只适用于已提供独立测试的三类基准；其他任务正常处理。',
+    name: 'research_optimize', description: '可选地运行现有 QuotaSaving 核心的真实代码性能实验。只适用于已提供独立测试的三类基准；其他任务正常处理。',
     parameters: { type: 'object', additionalProperties: false, required: ['family', 'request'], properties: {
       family: { type: 'string', enum: ['groupagg', 'logstats', 'intervals'] },
       request: { type: 'string', description: '用户的具体优化要求。' },

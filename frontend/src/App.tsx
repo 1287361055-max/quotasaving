@@ -72,7 +72,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand" aria-label="QuotaCrux 枢决"><span className="logo" aria-hidden="true">Q</span><span className="name">QuotaCrux<span className="slash"> / </span>枢决</span></div>
+        <div className="brand" aria-label="QuotaSaving 枢决"><span className="logo" aria-hidden="true">Q</span><span className="name">QuotaSaving<span className="slash"> / </span>枢决</span></div>
         <nav className="nav">
           {PRIMARY.map((id) => {
             const t = TABS.find((x) => x.id === id)!

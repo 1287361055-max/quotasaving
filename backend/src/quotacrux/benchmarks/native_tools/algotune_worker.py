@@ -20,7 +20,7 @@ for node in tree.body:
         class_name = node.name
     body.append(node)
 # These two task classes only use Task for registration and its no-argument initializer.
-# Dataset orchestration is handled by QuotaCrux; all generator/solver/checker methods stay unchanged.
+# Dataset orchestration is handled by QuotaSaving; all generator/solver/checker methods stay unchanged.
 tree.body = body
 namespace = {"__name__": "upstream_task"}
 exec(compile(ast.fix_missing_locations(tree), "upstream_task.py", "exec"), namespace)

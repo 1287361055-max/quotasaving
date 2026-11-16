@@ -87,7 +87,7 @@ def new(section=None, title=None, kicker=None, notes=""):
         # header: brand left, section route right; same names on every slide so morph keeps them still
         lockup(s, L, 56 - 19 * HDR_K, HDR_K)
         line(s, 304, 38, 304, 74, RULE, 2, name="!!divider")
-        T(s, 322, 32, 400, 48, [[("QuotaCrux", {"color": BLUE, "bold": True}), ("  枢决", {"color": INK, "bold": True})]], size=17, anchor="m", name="!!brand")
+        T(s, 322, 32, 400, 48, [[("QuotaSaving", {"color": BLUE, "bold": True}), ("  枢决", {"color": INK, "bold": True})]], size=17, anchor="m", name="!!brand")
         line(s, L, 88, R, 88, INK, 2, name="!!rule")
         x0, labw = 1250, [84, 84, 56, 56]
         for i, nm in enumerate(SECTIONS):
@@ -199,11 +199,11 @@ def autoplay(slide, spid, ms):
         slide._element.append(el)
 
 # ============================================================== 1 cover
-s, tl = new(notes="开场：QuotaCrux（枢决）是一个在预算里做研究的 Agent。三个关键词：动作与模型解耦路由、隔离沙箱里的独立裁判、可回退的可执行经验快照。")
+s, tl = new(notes="开场：QuotaSaving（枢决）是一个在预算里做研究的 Agent。三个关键词：动作与模型解耦路由、隔离沙箱里的独立裁判、可回退的可执行经验快照。")
 lockup(s, L, 56 - 19 * HDR_K, HDR_K)
 t1 = T(s, 1144, 32, 700, 48, "倍漾量化 · Research Agent 赛道", size=15, align="r", anchor="m")
 rule = line(s, L, 88, R, 88, INK, 2, name="!!rule")
-brand = T(s, 60, 120, 1300, 240, "QuotaCrux", size=118, bold=True, color=BLUE, latin=NUM, name="!!brand")
+brand = T(s, 60, 120, 1300, 240, "QuotaSaving", size=118, bold=True, color=BLUE, latin=NUM, name="!!brand")
 cn = T(s, 76, 360, 400, 170, "枢决", size=80, bold=True)
 tag = T(s, 420, 420, 900, 60, "预算感知的 Research Agent", size=24, color=INK2)
 slogan = T(s, 76, 560, 1400, 96, [[("把有限预算，用在", {}), ("关键节点", {"color": BLUE})]], size=40, bold=True)
@@ -229,12 +229,12 @@ for k, (x, y) in enumerate([(1380, 600), (1500, 470), (1640, 400), (1760, 360)])
 tl.pop(oval(s, 1844, 360, 14, ORANGE), 2200, 500)
 
 # ============================================================== 2 numbers
-s, tl = new(0, hi("五个数字看懂 ", ("QuotaCrux",)), "一页看懂",
+s, tl = new(0, hi("五个数字看懂 ", ("QuotaSaving",)), "一页看懂",
             notes="先给结论。最大的数字来自 AtCoder 启发式竞赛真题 ahc026：15 个隐藏用例总能耗降 44.7%。其余四个数字分别代表函数级优化、经验复用、在线任务流和交付可靠性。\n\n来源：docs/research/native-routing/20261114 · docs/archive/memory-learning-results.md · README 核心实测成果")
 lab = T(s, L, 300, 840, 36, "ALE-Bench ahc026 搬箱子 · 15 个隐藏用例总能耗", size=16, bold=True, color=ORANGE)
 big = T(s, L - 6, 336, 900, 290, "−44.7%", size=110, bold=True, color=ORANGE, latin=NUM, anchor="m")
 tl.fade(lab, 300, 500).zoom(big, 400, 700)
-for i, (lb, v, w, c) in enumerate([("初始程序", "18,136", 560, GREY_BAR), ("QuotaCrux", "10,028", 310, BLUE)]):
+for i, (lb, v, w, c) in enumerate([("初始程序", "18,136", 560, GREY_BAR), ("QuotaSaving", "10,028", 310, BLUE)]):
     y = 630 + i * 74
     a1 = T(s, L, y, 170, 50, lb, size=16, anchor="m", bold=(i == 1))
     b1 = rect(s, L + 180, y + 10, w, 30, c)
@@ -283,7 +283,7 @@ for x, y, w, h, bigc, tg, head, idea, to, d in cards:
          T(s, x + 40, y + 90, w - 80, 70, head, size=30 if bigc else 26, bold=True, color=fg),
          T(s, x + 40, y + 190, w - 80, 200, idea, size=20 if bigc else 17, color=fg2, spacing=1.3),
          line(s, x + 40, y + h - 220, x + w - 40, y + h - 220, "#FFFFFF" if bigc else RULE, 1.5, alpha=0.5 if bigc else None),
-         T(s, x + 40, y + h - 200, w - 80, 34, "在 QuotaCrux 中", size=14, bold=True, color="#FFD2C4" if bigc else BLUE),
+         T(s, x + 40, y + h - 200, w - 80, 34, "在 QuotaSaving 中", size=14, bold=True, color="#FFD2C4" if bigc else BLUE),
          T(s, x + 40, y + h - 160, w - 80, 140, to, size=20 if bigc else 17, bold=True, color=fg, spacing=1.3)]
     tl.add(g[0], "zoom" if bigc else "rise", d, 700, **({} if bigc else {"off": 0.04}))
     each(tl, g[1:], "rise" if not bigc else "fade", d + 250, 600, 80, **({"off": 0.02} if not bigc else {}))
@@ -693,7 +693,7 @@ for i, (x, f, cap) in enumerate([(L, "console-home.png", "总览：批次、轮�
 
 # ============================================================== 20b DeepSeek Harness plugin
 s, tl = new(3, hi("已接入 ", ("DeepSeek Harness",), " 插件"), "生态 · DSH 插件",
-            notes="QuotaCrux 已经做成 DeepSeek Harness（DSH）的插件：在 DSH 的 Plugins 页面安装后打开开关即可使用。普通请求交给本地 Qwen3.8 直接回答；需要远程协助时，通过显式的 remote_llm 工具调用云端模型——和 QuotaCrux 本地优先、关键节点才请大模型的思路一致。\n\n来源：DSH Plugins 页面截图")
+            notes="QuotaSaving 已经做成 DeepSeek Harness（DSH）的插件：在 DSH 的 Plugins 页面安装后打开开关即可使用。普通请求交给本地 Qwen3.8 直接回答；需要远程协助时，通过显式的 remote_llm 工具调用云端模型——和 QuotaSaving 本地优先、关键节点才请大模型的思路一致。\n\n来源：DSH Plugins 页面截图")
 iw = 1040
 ih = iw * 1640 / 2560
 pic(s, A("dsh-plugin.png"), L, 290, iw, ih)
@@ -713,8 +713,8 @@ for i, (k_, v) in enumerate([("安装即用", ["Plugins 页面打开开关", "�
 
 # ============================================================== 21 advantages
 s, tl = new(3, hi("同一个系统里的", ("受控对比",)), "优势对比",
-            notes="对比的每一列都来自我们自己的受控实验：固定小模型、固定大模型、小模型加文字经验，以及 QuotaCrux。各列口径不同（ahc026 得分提升 / 自建任务加速比），只在各自实验内比较。\n\n来源：双机补充实验、v1 文字经验消融、S 任务流、D 留出")
-arows = [["", "固定小模型", "固定大模型", "小模型 + 文字经验", "QuotaCrux"],
+            notes="对比的每一列都来自我们自己的受控实验：固定小模型、固定大模型、小模型加文字经验，以及 QuotaSaving。各列口径不同（ahc026 得分提升 / 自建任务加速比），只在各自实验内比较。\n\n来源：双机补充实验、v1 文字经验消融、S 任务流、D 留出")
+arows = [["", "固定小模型", "固定大模型", "小模型 + 文字经验", "QuotaSaving"],
          ["质量", "0% 提升", "+5.5% ~ +5.7%", "1.41× → 1.29×", "+5.8% ~ +6.4% · 1.20× → 1.73×"],
          ["大模型调用", "0", "每轮 6–7 次", "升级 11 → 5 次", "S 流 27 → 6 · D 留出 7 → 0"],
          ["正确性由谁判", "外部裁判", "外部裁判", "外部裁判", "外部裁判 · 模型不自评"],
@@ -729,7 +729,7 @@ for i, g in enumerate(body):
 tl.wipe(band, 1400, 800, direction="down")
 
 # ============================================================== 22 summary
-s, tl = new(3, notes="总结：QuotaCrux 在预算里做研究。小模型干主力，关键节点请大模型；模型只提出想法，裁判决定结果；验证过的程序沉淀为可回退的经验。欢迎扫码查看代码与报告。")
+s, tl = new(3, notes="总结：QuotaSaving 在预算里做研究。小模型干主力，关键节点请大模型；模型只提出想法，裁判决定结果；验证过的程序沉淀为可回退的经验。欢迎扫码查看代码与报告。")
 t1 = T(s, L, 160, 1300, 120, "在预算里做研究，", size=50, bold=True)
 t2 = T(s, L, 280, 1300, 120, "每一步都有据可查", size=50, bold=True, color=BLUE)
 ul = line(s, L, 412, L + 340, 412, ORANGE, 6)
@@ -752,6 +752,6 @@ tl.fade(T(s, L, 930, 1000, 44, "github.com/bohack-2026-hw/QuotaCrux", size=17, c
 
 for t in TLS:
     t.build()
-prs.core_properties.title = "QuotaCrux 枢决 · 技术演示"
+prs.core_properties.title = "QuotaSaving 枢决 · 技术演示"
 prs.save(OUT)
 print(f"{len(TLS)} slides -> {OUT}")

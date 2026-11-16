@@ -14,7 +14,7 @@
 - i7-8700K，6 核 / 12 线程，约 47 GiB 内存；Docker 29.9.3，linux/amd64。镜像完成时可用磁盘约 23.24 GiB。
 - Worker A：ahc024，候选 CPU 2，SMT 同胞 CPU 8；Worker B：ahc026，候选 CPU 4，同胞 CPU 10。容器内 affinity 探针分别返回 `[2]` / `[4]`。
 - 保持既有 governor=`powersave`、EPP=`balance_performance`。候选使用 1 CPU、1 GiB、64 PIDs、无网络、只读根文件系统；每用例题目上限 2 秒。
-- 两个 worker 各有独立 `var-worker-a` / `var-worker-b`、SQLite、`run.lock`、`compare.lock`。校准期间两个锁均持有，结束后确认释放；当前没有运行中的 QuotaCrux 容器。
+- 两个 worker 各有独立 `var-worker-a` / `var-worker-b`、SQLite、`run.lock`、`compare.lock`。校准期间两个锁均持有，结束后确认释放；当前没有运行中的 QuotaSaving 容器。
 - 现有 Qwen 配置通过 SSH 写入远端忽略的 `backend/.env`（权限 0600），公开配置为 Qwen3.8-27B / AIPing、`thinking=false`、`max_output_tokens=8192`、`response_format=json_object`；正式模型配置、提示与价格快照另由统一协议冻结。
 
 完整硬件、镜像和限制见 [host.json](evidence/host.json)、[worker A](evidence/worker-a.json)、[worker B](evidence/worker-b.json)。Docker 本地构建镜像没有 registry RepoDigest；下列值为实际不可变 image ID，不将 tag 当 digest。

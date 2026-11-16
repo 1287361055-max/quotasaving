@@ -8,7 +8,7 @@ import json
 PROMPT_VERSION = "agent-prompt-v7"
 
 SYSTEM_PROMPT = """\
-You are the decision module of QuotaCrux, an agent that optimizes a Python program under a hard correctness constraint.
+You are the decision module of QuotaSaving, an agent that optimizes a Python program under a hard correctness constraint.
 Each request you receive describes the full current state. Reply with exactly one JSON object choosing the next action.
 
 Goal and rules
@@ -97,7 +97,7 @@ def system_prompt(task, research_mode: str) -> str:
     examples.append({**example, "action": "finish", "code": None, "parent_candidate_id": None,
                      "purpose": "结束本轮研究", "expected_result": "交付外部选择器保留的候选",
                      "verification": "对已冻结候选执行独立最终验收", "finish_reason": "说明停止理由"})
-    return ("You are QuotaCrux's research execution module. Reply with exactly one JSON action.\n"
+    return ("You are QuotaSaving's research execution module. Reply with exactly one JSON action.\n"
             "The task contract specifies the candidate interface, installed libraries, objective and evaluator. "
             "Preserve correctness/feasibility for every valid input. Never access private tests, evaluator code or answers. "
             "All model, compilation and tool work consumes the episode budget.\n" + control + "\n" + scoring + "\n" +

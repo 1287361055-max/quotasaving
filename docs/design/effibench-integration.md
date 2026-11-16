@@ -40,7 +40,7 @@ flowchart LR
 | 题目数 | 623，全部带 Python 参考解 |
 | 接口类型 | 285 个 `io`，338 个 `functional`；全部 functional 题带 Python runner |
 | 来源 | Aizu 33、AtCoder 149、CodeChef 93、Codeforces 10、LeetCode 338 |
-| 上游 split | 只有 `test`；QuotaCrux 的 A/B/C/D 是本地实验划分 |
+| 上游 split | 只有 `test`；QuotaSaving 的 A/B/C/D 是本地实验划分 |
 | 分片 | 20 个 Parquet，合计 **2,341,977,516 bytes**，约 **2.34 GB / 2.18 GiB** |
 | 用例数 | 官方说明每题 100 个；导入时记录实际条数并去除重复输入 |
 

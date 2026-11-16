@@ -35,7 +35,7 @@ export async function executionProject(expectedRoot, execution) {
   const sessionId = execution.agent?.session?.id;
   if (!cwd || !sessionId) throw new Error('此工具需要 DSH 会话及项目工作区，请在 RouteEvo 项目中新建会话。');
   const [expected, actual] = await Promise.all([projectRoot(expectedRoot), projectRoot(cwd)]);
-  if (actual !== expected) throw new Error('项目不匹配：请在 RouteEvo 工作区新建会话，并选择 QuotaCrux · 路由演示预设。其他项目的记忆不会被读取。');
+  if (actual !== expected) throw new Error('项目不匹配：请在 RouteEvo 工作区新建会话，并选择 QuotaSaving · 路由演示预设。其他项目的记忆不会被读取。');
   return { root: actual, sessionId: String(sessionId), projectId: createHash('sha256').update(actual).digest('hex').slice(0, 16) };
 }
 

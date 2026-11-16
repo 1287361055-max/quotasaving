@@ -1,4 +1,4 @@
-# QuotaCrux（枢决） 产品需求（Research Agent）
+# QuotaSaving（枢决） 产品需求（Research Agent）
 
 版本：v0.4；日期：2026-11-14。本文定义 Research Agent 的研究流程、功能目标与 RA 验收条件；具体评测参数见[评测入口](../evaluation/README.md)，通用运行、经验管理和版本规则见[核心需求](core-requirements.md)。赛题依据见[原文与团队选择](competition-brief.md)，实现进度见[验收记录](acceptance-record.md)。
 

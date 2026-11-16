@@ -67,7 +67,7 @@ class Deck:
             line.fill.solid()
             line.fill.fore_color.rgb = rgb(INK)
             line.line.fill.background()
-        self.text(s, f"QuotaCrux（枢决） · {self.n}", 11.6, 7.05, 1.6, 0.3, size=9, color=INK3, align=PP_ALIGN.RIGHT)
+        self.text(s, f"QuotaSaving（枢决） · {self.n}", 11.6, 7.05, 1.6, 0.3, size=9, color=INK3, align=PP_ALIGN.RIGHT)
         return s
 
     @staticmethod
@@ -404,7 +404,7 @@ def build(out: Path, shots: Path) -> None:
                    f"模型请求中位数 {g(A['model_requests_median'])} → {g(B['model_requests_median'])} · GPT 费用 {usd(A['cost_usd_total'])} → {usd(B['cost_usd_total'])} · "
                    f"循环时长中位数 {A['agent_loop_s_median']:.0f}s → {B['agent_loop_s_median']:.0f}s"),
                0.95, 5.35, 11.8, 0.45, size=14, color=PAPER)
-    d.text(s, "QuotaCrux（枢决） · BoHack 2026 · 倍漾量化 Research Agent 赛道", 0.95, 6.3, 8, 0.4, size=12, color="9A9485")
+    d.text(s, "QuotaSaving（枢决） · BoHack 2026 · 倍漾量化 Research Agent 赛道", 0.95, 6.3, 8, 0.4, size=12, color="9A9485")
 
     # 2 questions
     s = d.slide("我们要回答的两个问题", "问题定义")

@@ -12,7 +12,7 @@ export const defaults = Object.freeze({
   largeModel: '',
 });
 
-const instructions = `你是枢决 QuotaCrux 的路由演示助手，使用简洁中文。
+const instructions = `你是枢决 QuotaSaving 的路由演示助手，使用简洁中文。
 用户询问已有研究、模型选择或项目记忆时，先调用 quotacrux_memory 检索本项目共享研究证据，再按需调用 quotacrux_cases 或 quotacrux_replay。
 必须使用工具返回的数据解释路由依据和结果。quotacrux_replay 是历史回放，必须保留历史运行编号、原始模型和时间，不得说成刚执行的新实验。
 P0 只提供历史报告引用的跨会话共享，不把回放冒充新学习或写入引擎经验快照。其他会话的聊天内容不共享。不要声称正在支持任意代码研究。
@@ -22,7 +22,7 @@ P0 只提供历史报告引用的跨会话共享，不把回放冒充新学习�
 
 export function apply(ctx, input = {}) {
   for (const [key, value] of Object.entries(input)) {
-    if (!(key in defaults) || typeof value !== 'string') throw new Error(`无效的 QuotaCrux 配置项：${key}`);
+    if (!(key in defaults) || typeof value !== 'string') throw new Error(`无效的 QuotaSaving 配置项：${key}`);
   }
   const config = { ...defaults, ...input };
   localBaseURL(config.smallBaseURL);

@@ -1,4 +1,4 @@
-// QuotaCrux 枢决 showcase video. Everything on screen is a pure function of time t (seconds): window.render(t).
+// QuotaSaving 枢决 showcase video. Everything on screen is a pure function of time t (seconds): window.render(t).
 import * as THREE from 'three'
 
 const C = { bg: 0xF1EFE9, ink: '#111113', grey: '#8E8D88', accent: '#FF4D1F', card: '#D6B98D', cardEdge: '#B4925F' }
@@ -262,7 +262,7 @@ const SUBS = [
   [18.8, 22.6, '可第一步放下的那一摞，正好压住了箱子 8：现在得再花 29 份力气把它挪开。'],
   [22.8, 27.6, '每个用例的得分是 10000 减去总能耗：放法越聪明，力气越省。'],
   [27.8, 36.4, '题目给的初始程序能把箱子搬完，但 15 个用例一共耗了一万八千多份力气。'],
-  [38.2, 43.4, 'QuotaCrux 把研究拆成一圈：定计划、看数据、提假设，再写成程序。'],
+  [38.2, 43.4, 'QuotaSaving 把研究拆成一圈：定计划、看数据、提假设，再写成程序。'],
   [43.6, 49.2, '每版程序都交给外部裁判：在隔离环境里验对错、计时打分，好的才留下。'],
   [49.4, 54.4, '本地小模型干主力，只在关键节点请云端大模型，整轮都在预算之内。'],
   [56.0, 61.6, '这是一轮真实的研究。小模型连续两次交了同一份代码，分数原地不动。'],
@@ -325,7 +325,7 @@ const CHIP = { t0: 40.0, period: 4.6, upgradeAt: 49.6 }
 // ---------- overlays ----------
 const $ = (id) => document.getElementById(id)
 const brand = $('brand'), tagEl = $('tag'), hud = $('hud'), sub = $('sub'), subText = sub.querySelector('span'), delta = $('delta'), pin = $('pin')
-brand.innerHTML = `<div class="name">${[...'QuotaCrux'].map((ch) => `<span>${ch}</span>`).join('')}</div><div class="cn">枢决</div><div class="dot"></div>`
+brand.innerHTML = `<div class="name">${[...'QuotaSaving'].map((ch) => `<span>${ch}</span>`).join('')}</div><div class="cn">枢决</div><div class="dot"></div>`
 const letters = [...brand.querySelectorAll('.name span')], cn = brand.querySelector('.cn'), dot = brand.querySelector('.dot')
 const stationEls = STATIONS.map(([name], i) => {
   const el = document.createElement('div'); el.className = 'station card'

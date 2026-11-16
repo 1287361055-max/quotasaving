@@ -82,7 +82,7 @@ const jsonStateSchema = {
   parse(value) {
     if (!value || value.version !== 1 || !Number.isSafeInteger(value.local) || !Number.isSafeInteger(value.remote)
         || value.local < 0 || value.remote < 0 || !Array.isArray(value.remote_calls) || !Array.isArray(value.timeline)) {
-      throw new Error('Invalid QuotaCrux session projection');
+      throw new Error('Invalid QuotaSaving session projection');
     }
     return value;
   },
@@ -131,7 +131,7 @@ export const FAMILY_TITLES = { groupagg: '分组聚合', logstats: '日志统计
 export function renderLive(state) {
   const total = state.local + state.remote;
   const lines = [`枢决真实研究引擎｜${state.family ? FAMILY_TITLES[state.family] : '研究入口'}`,
-    state.read_saved ? '正在查看上次真实运行，没有重新启动研究。' : '执行已由 QuotaCrux 接管；DSH 外层对话模型请求为 0。',
+    state.read_saved ? '正在查看上次真实运行，没有重新启动研究。' : '执行已由 QuotaSaving 接管；DSH 外层对话模型请求为 0。',
     `本次研究：本机模型 ${state.local} 次；远程大模型 ${state.remote}/${state.remote_limit} 次；程序验证 ${state.validations} 次；复用程序 ${state.reused} 个。`,
     `远程请求占比：${total ? `${(100 * state.remote / total).toFixed(1)}%（${state.remote}/${total}）` : '未调用模型'}`, state.headline,
   ];
