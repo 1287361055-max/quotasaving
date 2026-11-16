@@ -1,0 +1,28 @@
+[project]
+name = "quotacrux"
+version = "0.1.0"
+description = "QuotaCrux shared core: execute, verify, learn from runs"
+authors = [
+    { name = "Snowball_233", email = "wangrb.qq@outlook.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.162.6",
+    "httpx>=0.28.1",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.optional-dependencies]
+benchmark = ["pyarrow>=26.0.0"]
+
+[project.scripts]
+quotacrux = "quotacrux.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.19,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]

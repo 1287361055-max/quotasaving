@@ -1,0 +1,8 @@
+.DS_Store
+
+# Local project-scoped DSH evidence references.
+.quotacrux/
+
+# Frontend dependencies and build cache
+node_modules/
+.vite-temp/
