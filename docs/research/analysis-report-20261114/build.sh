@@ -12,7 +12,7 @@ uv run --with matplotlib==3.10.8 python scripts/analyze_mac.py --source-commit 5
 mkdir -p output/pdf
 for pass in 1 2; do
   if ! xelatex -interaction=nonstopmode -halt-on-error \
-    -output-directory=output/pdf -jobname=quotacrux-research-report report.tex \
+    -output-directory=output/pdf -jobname=quotasaving-research-report report.tex \
     > output/pdf/build-console.log 2>&1; then
     tail -60 output/pdf/build-console.log
     exit 1
@@ -21,7 +21,7 @@ done
 python3 - <<'PY'
 import pathlib
 import re
-log = pathlib.Path('output/pdf/quotacrux-research-report.log').read_text()
+log = pathlib.Path('output/pdf/quotasaving-research-report.log').read_text()
 problems = re.findall(r'^.*(?:Overfull|Missing character|undefined references|LaTeX Warning|Package .+ Warning).*$' , log, re.M)
 if problems:
     raise SystemExit('\n'.join(problems))

@@ -18,7 +18,7 @@
 | 6 | 1:55–2:10 | 定格最好的版本，送进隐藏测试集；左右两个仓库在同一个用例上同时播放，右侧明显少搬很多次。总能耗计数从 18,136 滚到 10,028，大字"−44.7%" | 冻结最好的版本，在从没见过的 15 个用例上只测一次：全部通过，总能耗从一万八千降到一万出头，少了 44.7%。 | 10,028 / 18,136 · −44.7% · 15/15 通过 |
 | 7 | 2:10–2:30 | 调度：四根横条依次长出（规则调度、决策模型选动作、决策模型选模型、全权交给决策模型），旁边是用时 | 谁来决定下一步，同样影响结果。用决策模型挑动作，得分最高；全部交给决策模型，用时少了七成，提升却只剩 0.5%。在预算里做研究，就是在质量和成本之间做取舍。 | +5.97% / +6.15% / +5.84% / +0.51%；392 / 389 / 390 / 113 秒 |
 | 8 | 2:30–2:42 | 账本：三个大数字依次出现 | 每一次调用都记账。15 次交付全部通过最终测试；96 个候选里 60 个通过验证；而大部分时间，都花在等模型回复上。 | 15/15 · 60/96 · 94% |
-| 9 | 2:42–2:50 | 回到字标；仓库地址和二维码 | QuotaSaving 枢决。每一步研究，都有据可查。 | github.com/bohack-2026-hw/QuotaCrux |
+| 9 | 2:42–2:50 | 回到字标；仓库地址和二维码 | QuotaSaving 枢决。每一步研究，都有据可查。 | github.com/bohack-2026-hw/quotasaving |
 
 可选插段（若时长允许，放在 #7 之后，约 10 秒）：函数级优化，PageRank 提速 25.0×（实际 25.04×，稀疏矩阵直接迭代），一维卷积提速 2.67×（float32 实数 FFT）。
 
@@ -55,8 +55,8 @@
 |---|---|---|
 | 题目规模与规则 | 200 箱 · 10 堆；搬 k 个耗 k+1；得分 max(1, 10000 − V) | 运行 `run-20261114T085616-894b` 中的题面 |
 | 初始 / 最终总能耗 | 18,136 → 10,028（−44.7%） | [deep-analysis.json](../research/analysis-report-20261114/generated/deep-analysis.json) `ahc026_movement_energy` |
-| 7 个候选开发分 | 44,120 / 44,120 / 46,506 / 46,798 / 46,725 / 46,800 / 46,849 | [研究报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) 第 5 节 |
-| 最终测试 | 15 例全部通过，总分 139,972 | [研究报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) 第 4、5 节 |
-| 四种调度 | +5.970% / +6.149% / +5.836% / +0.513%；392 / 389 / 390 / 113 秒 | [研究报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) 第 4 节 |
+| 7 个候选开发分 | 44,120 / 44,120 / 46,506 / 46,798 / 46,725 / 46,800 / 46,849 | [研究报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) 第 5 节 |
+| 最终测试 | 15 例全部通过，总分 139,972 | [研究报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) 第 4、5 节 |
+| 四种调度 | +5.970% / +6.149% / +5.836% / +0.513%；392 / 389 / 390 / 113 秒 | [研究报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) 第 4 节 |
 | 账本 | 15/15 交付通过；60/96 候选通过；等待模型占 93.9% | [analysis.json](../research/analysis-report-20261114/generated/analysis.json) `feedback.totals` |
-| 函数级（可选） | PageRank 25.0×（25.04×），卷积 2.67× | [研究报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) 第 7 节 |
+| 函数级（可选） | PageRank 25.0×（25.04×），卷积 2.67× | [研究报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) 第 7 节 |

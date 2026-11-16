@@ -1,6 +1,6 @@
 """Build the 80 x 180 cm QuotaSaving (枢决) poster (PDF). Everything on it is typeset here: type, numbers and charts.
 
-    uv run --with segno python scripts/build_poster.py [--out ../docs/poster/QuotaCrux-poster.pdf]
+    uv run --with segno python scripts/build_poster.py [--out ../docs/poster/QuotaSaving-poster.pdf]
 
 Data: the QuotaSaving research report v1.1 (PR #19, docs/research/analysis-report-20261114, generated/analysis.json,
 deep-analysis.json, mac-analysis.json and sections 04-07). Values are copied below with their source so the poster
@@ -18,7 +18,7 @@ from pathlib import Path
 import segno
 
 ROOT = Path(__file__).resolve().parents[2]
-REPO = "https://github.com/bohack-2026-hw/QuotaCrux"
+REPO = "https://github.com/bohack-2026-hw/quotasaving"
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 # Latin text and numbers in Inter; Chinese in Noto Sans SC (any machine) or PingFang SC (Mac, --cjk "PingFang SC")
@@ -215,7 +215,7 @@ h2 {{ font-size: 36mm; font-weight: 600; letter-spacing: -0.5mm; margin-top: 5mm
 def main() -> None:
     global CJK
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=str(ROOT / "docs" / "poster" / "QuotaCrux-poster.pdf"))
+    ap.add_argument("--out", default=str(ROOT / "docs" / "poster" / "QuotaSaving-poster.pdf"))
     ap.add_argument("--cjk", default=CJK, help='Chinese font, e.g. "PingFang SC" on a Mac')
     args = ap.parse_args()
     CJK = args.cjk

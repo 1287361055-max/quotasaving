@@ -1,6 +1,6 @@
 # QuotaSaving / 枢决：研究优化实验报告
 
-**[阅读 PDF（19 页，v1.2）](output/pdf/quotacrux-research-report.pdf)**
+**[阅读 PDF（19 页，v1.2）](output/pdf/quotasaving-research-report.pdf)**
 
 报告围绕系统机制、实验结果和过程分析展开，作为后续 PPT、海报与演示的数据来源。正文使用思源宋体，标题使用思源黑体 Medium；七张图统一中文标注，并保存独立矢量 PDF。
 
@@ -50,7 +50,7 @@
 
 只更新正文时，执行两遍：
 
-    xelatex -interaction=nonstopmode -halt-on-error -output-directory=output/pdf -jobname=quotacrux-research-report report.tex
+    xelatex -interaction=nonstopmode -halt-on-error -output-directory=output/pdf -jobname=quotasaving-research-report report.tex
 
 Mac 归档（提交 `5962203`）可单独重新分析：
 

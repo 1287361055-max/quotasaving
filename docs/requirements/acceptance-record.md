@@ -71,7 +71,7 @@
 
 | 新协议需要的证据 | 早期检查点（v0.4 调整初期） | 后续已完成批次与结果入口 |
 | --- | --- | --- |
-| 一轮研究内反馈影响后续选择 | A-01 样例已提供具体过程链 | `ahc026` 动作决策案例（见[研究报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) 第 5 节） |
+| 一轮研究内反馈影响后续选择 | A-01 样例已提供具体过程链 | `ahc026` 动作决策案例（见[研究报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) 第 5 节） |
 | 同预算反馈迭代 / 独立尝试对照 | 独立控制组与成对入口已实现 | [ALE 正式 15 轮结果](../research/native-formal-20261114/ale/results/README.md)（14 完成、1 HTTP 400 中止；15/15 通过 final） |
 | 长预算过程曲线、Token 与费用核算 | [15 分钟 CPU 预实验](../research/native-20261114/README.md)已归档 | [第二轮 CPU 对照](../research/native-r2-20261114/README.md) · [路由短批](../research/native-routing/20261114/RESULTS.md) · [双机补充](../research/onehour-20261114/README.md) |
 | ALE-Bench / AlgoTune / KernelBench 独立结果 | 三项首批子集已接入；GPU 实机与 final 待测 | ALE 15 轮已测 final；AlgoTune 完成 Mac 2-case dev 探索（见[Mac 归档](../research/mac-exploratory-20261114/README.md)）；KernelBench GPU 实机待后续运行 |

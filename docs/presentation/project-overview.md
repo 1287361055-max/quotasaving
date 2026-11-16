@@ -4,7 +4,7 @@ QuotaSaving 是一个自动改进程序的 **Research Agent 系统**，参加倍
 
 评估看两件事：程序是否正确、性能提高多少，以及为此花了多少时间、Token 和费用。系统还会保存验证过的程序和适用条件，供之后的任务重用。
 
-**主要结果**：在 12 个任务、3 次重放的 S 任务流中，使用经验后，大模型请求从 27 次降到 6 次，费用从 USD 0.402 降到 USD 0.086；两侧均有 36/36 次达标，最终加速比中位数均为 1.86×。各阶段实验对照数据与适用边界见第 5 节；后续新增的多基准（ALE-Bench、AlgoTune、EffiBench-X、KernelBench）与动作／模型独立路由实验见[研究实验报告](../research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf)与[设计导航](../design/README.md)。
+**主要结果**：在 12 个任务、3 次重放的 S 任务流中，使用经验后，大模型请求从 27 次降到 6 次，费用从 USD 0.402 降到 USD 0.086；两侧均有 36/36 次达标，最终加速比中位数均为 1.86×。各阶段实验对照数据与适用边界见第 5 节；后续新增的多基准（ALE-Bench、AlgoTune、EffiBench-X、KernelBench）与动作／模型独立路由实验见[研究实验报告](../research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf)与[设计导航](../design/README.md)。
 
 | 研究环节 | 在 QuotaSaving 中 |
 | --- | --- |

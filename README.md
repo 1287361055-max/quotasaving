@@ -4,7 +4,7 @@
 
 **面向预算约束的自我进化 Research Agent：将调度决策与代码生成解耦，以独立沙箱裁判、动作/模型正交路由与可回退的程序经验快照，在受限配额内持续沉淀可验证的优化增益。**
 
-[简体中文](README.md) · [English](README.en.md) · [文档总导航](docs/README.md) · [研究报告 (PDF)](docs/research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf) · [项目介绍 (PDF)](docs/presentation/project-overview.pdf) · [展示海报 (PDF)](docs/poster/QuotaCrux-poster.pdf) · [演示文稿 (PDF)](docs/presentation/QuotaCrux.pdf) · [后端指南](backend/README.md)
+[简体中文](README.md) · [English](README.en.md) · [文档总导航](docs/README.md) · [研究报告 (PDF)](docs/research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf) · [项目介绍 (PDF)](docs/presentation/project-overview.pdf) · [展示海报 (PDF)](docs/poster/QuotaSaving-poster.pdf) · [演示文稿 (PDF)](docs/presentation/QuotaSaving.pdf) · [后端指南](backend/README.md)
 
 <img src="frontend/docs/screenshots/home-1440-dark.png" alt="QuotaSaving 枢决控制台总览" width="760" />
 
@@ -280,9 +280,9 @@ uv run --extra benchmark pytest
 | 类别 | 文档 / 交付物 | 说明 |
 | --- | --- | --- |
 | **文档总览** | [docs/README.md](docs/README.md) | 赛题 → 需求 → 设计 → 评测 → 实验 → 验收的完整导航 |
-| **项目介绍与路演** | [项目介绍 (PDF)](docs/presentation/project-overview.pdf) · [技术演示文稿 (PDF)](docs/presentation/QuotaCrux.pdf) · [PPTX](docs/presentation/QuotaCrux.pptx) · [展示视频](docs/video/QuotaCrux-showcase.mp4) · [演示脚本](docs/presentation/demo-script.md) | 路演材料、技术幻灯片与现场演示流程（含 [Markdown 原文](docs/presentation/project-overview.md)） |
-| **展示海报** | [展示海报 (PDF)](docs/poster/QuotaCrux-poster.pdf) · [高清预览图](docs/poster/倍漾量化-瀚海Vastsea-枢决QuotaCrux.jpg) | `80 × 180 cm` 印刷级矢量海报及导出预览 |
+| **项目介绍与路演** | [项目介绍 (PDF)](docs/presentation/project-overview.pdf) · [技术演示文稿 (PDF)](docs/presentation/QuotaSaving.pdf) · [PPTX](docs/presentation/QuotaSaving.pptx) · [展示视频](docs/video/QuotaSaving-showcase.mp4) · [演示脚本](docs/presentation/demo-script.md) | 路演材料、技术幻灯片与现场演示流程（含 [Markdown 原文](docs/presentation/project-overview.md)） |
+| **展示海报** | [展示海报 (PDF)](docs/poster/QuotaSaving-poster.pdf) · [高清预览图](docs/poster/倍漾量化-瀚海Vastsea-枢决QuotaSaving.jpg) | `80 × 180 cm` 印刷级矢量海报及导出预览 |
 | **架构与接入设计** | [后端指南](backend/README.md) · [动作与模型路由](docs/design/action-model-routing.md) · [EffiBench-X 接入](docs/design/effibench-integration.md) · [原生 Benchmark 接入](docs/design/native-benchmarks.md) | CLI / HTTP API、四组路由消融、EffiBench-X / ALE / AlgoTune / KernelBench 协议 |
 | **需求与验收** | [产品需求](docs/requirements/product-requirements.md) · [核心需求](docs/requirements/core-requirements.md) · [验收记录](docs/requirements/acceptance-record.md) | 研究闭环规则、经验与快照版本机制、RA-AC-01–08 逐条证据对照 |
-| **实验数据与报告** | [研究实验报告 (19 页 PDF)](docs/research/analysis-report-20261114/output/pdf/quotacrux-research-report.pdf)（[说明](docs/research/analysis-report-20261114/README.md)） · [Mac 探索归档](docs/research/mac-exploratory-20261114/README.md) · [2026-11-14 数据汇总](docs/research/20261114-summary.md) · [实验批次索引](docs/research/README.md) · [路由短批结果](docs/research/native-routing/20261114/RESULTS.md) · [ALE 正式结果](docs/research/native-formal-20261114/ale/results/README.md) · [经验学习结果](docs/archive/memory-learning-results.md) | 全部实证实验报告、图表复现脚本、运行边界（[运行时规则](docs/archive/legacy-runtime-rules.md)）与集成记录 |
+| **实验数据与报告** | [研究实验报告 (19 页 PDF)](docs/research/analysis-report-20261114/output/pdf/quotasaving-research-report.pdf)（[说明](docs/research/analysis-report-20261114/README.md)） · [Mac 探索归档](docs/research/mac-exploratory-20261114/README.md) · [2026-11-14 数据汇总](docs/research/20261114-summary.md) · [实验批次索引](docs/research/README.md) · [路由短批结果](docs/research/native-routing/20261114/RESULTS.md) · [ALE 正式结果](docs/research/native-formal-20261114/ale/results/README.md) · [经验学习结果](docs/archive/memory-learning-results.md) | 全部实证实验报告、图表复现脚本、运行边界（[运行时规则](docs/archive/legacy-runtime-rules.md)）与集成记录 |
 | **许可与归因** | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | 上游数据集版本哈希与许可证原文（`docs/licenses/`） |

@@ -1,4 +1,4 @@
-"""Builds docs/presentation/QuotaCrux.pptx: native PowerPoint shapes and text on a 1920 x 1080 px grid,
+"""Builds docs/presentation/QuotaSaving.pptx: native PowerPoint shapes and text on a 1920 x 1080 px grid,
 morph transitions between slides and auto-playing entrance animations on every slide.
 
     uv run --with python-pptx --with lxml --with pillow python build.py [out.pptx]
@@ -15,7 +15,7 @@ from pptx.util import Emu
 from pptkit import CJK, MONO, NUM, Timeline, line, oval, pic, rect, set_bg, set_transition, shape, text
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "QuotaCrux.pptx")
+OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "QuotaSaving.pptx")
 A = lambda n: os.path.join(HERE, "assets", n)  # noqa: E731
 
 BG, CARD = "#F7F6F1", "#FFFFFF"
@@ -748,7 +748,7 @@ qf = rect(s, 1494, 300, 350, 350, CARD, radius=12, line=RULE, line_w=1.5)
 qi = pic(s, A("qr.png"), 1519, 325, 300, 300)
 qt = T(s, 1494, 668, 350, 40, "扫码查看代码与报告", size=16, color=INK2, align="c")
 tl.fade(qt, 3300, 400)
-tl.fade(T(s, L, 930, 1000, 44, "github.com/bohack-2026-hw/QuotaCrux", size=17, color=INK2, latin=NUM), 3300, 500)
+tl.fade(T(s, L, 930, 1000, 44, "github.com/bohack-2026-hw/quotasaving", size=17, color=INK2, latin=NUM), 3300, 500)
 
 for t in TLS:
     t.build()
