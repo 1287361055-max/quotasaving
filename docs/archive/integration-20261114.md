@@ -31,4 +31,4 @@
 
 [第二轮 native 报告](../research/native-r2-20261114/README.md)：固定 Qwen3.8-27B，4 个开发研究，47 次请求，约 738.6 秒，标价估算 ¥1.1951。AlgoTune feedback / independent 保留加速为 1.8343× / 1.2101×；ALE independent 得分 18,230（基线 17,753），feedback 保持基线。最终集未评测，KernelBench GPU 实机实验仍未执行。
 
-协作动态同步于 [issue #1](https://github.com/bohack-2026-hw/QuotaCrux/issues/1)；后续开发以 `main` 为共同基线，原分支保留归档。
+协作动态同步于 issue #1；后续开发以 `main` 为共同基线，原分支保留归档。

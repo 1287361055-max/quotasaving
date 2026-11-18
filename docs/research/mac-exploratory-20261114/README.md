@@ -4,7 +4,7 @@
 
 ## 来源与边界
 
-- 执行代码固定为 [`912b20a4cfeb51af9c36d0679b23f0990abe862f`](https://github.com/bohack-2026-hw/QuotaCrux/commit/912b20a4cfeb51af9c36d0679b23f0990abe862f)。
+- 执行代码固定为 `912b20a4cfeb51af9c36d0679b23f0990abe862f`。
 - OpenAI 批次固定 `gpt-6.1-sol`，每个任务只有 2 个 dev 用例，final evaluation disabled；运行时宿主处于高负载。
 - 远端批次使用 LM Studio 的 `qwen3.8-27b-uncensored-mlx`，与托管 Qwen 配置不是同一运行时或量化，两者分开统计。
 - 包内的机器路径、私有端点和凭据已清理；脱敏后的捕获 `run.log` 会提交，原始 SQLite/WAL、锁及 sealed dev/final 输入不提交。任务身份、输入文件和公开工件由哈希与字节数标识。

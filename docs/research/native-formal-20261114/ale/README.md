@@ -2,7 +2,7 @@
 
 > 历史准备档案：本目录记录 desktop 上 ALE 两路正式评测启动前的环境搭建与无模型校准结果（当时正式 runs 处于 0/15 预检阶段）。随后的 15 轮正式执行结果已归档于 [ALE 结果](results/README.md)。
 
-2026-11-14，执行机 desktop，关联 [ALE issue #3](https://github.com/bohack-2026-hw/QuotaCrux/issues/3)、[公共协议 issue #2](https://github.com/bohack-2026-hw/QuotaCrux/issues/2)。
+2026-11-14，执行机 desktop，关联 ALE issue #3、公共协议 issue #2。
 
 **本阶段状态：环境、任务包、参考程序和两路校准已完成；正式 15 轮尚未启动（0/15）。** 本目录分数全部来自 dev 校准。SQLite 核验正式研究 runs=0、模型调用=0、final 评测=0，API 消耗为 0。
 

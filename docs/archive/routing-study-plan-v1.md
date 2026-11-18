@@ -2,7 +2,7 @@
 
 > 这是最初的24轮计划。后续范围和结果见[路由研究入口](../research/native-routing/README.md)。
 
-对应 [issue #6](https://github.com/bohack-2026-hw/QuotaCrux/issues/6)。本目录交付实现说明与
+对应 issue #6。本目录交付实现说明与
 [freeze-template.json](../research/native-routing/freeze-template.json)，当前不包含真实路由实验结果。
 ALE ahc026 / AlgoTune convolve_1d 各四组 × 三次，新增 24 轮（与既有 30 轮固定 Qwen 反馈对照独立）；因本批允许模型升级，基线单独执行而不复用固定 Qwen 结果。
 
@@ -97,4 +97,4 @@ Python 入口同时支持完整 `RunLimits` / `MeasureConfig`、`final_evaluatio
 覆盖 ALE score、AlgoTune speedup 四组的实际调用角色、升级、预算、工具菜单、dev 选择和 final 隔离。
 这些检查覆盖调用流程和记录格式，实际效果待正式实验数据验证。
 
-后续沿公共 Runner/CLI/API、两台执行机独立推进及前端按 `study + variant` 展示协同衔接，具体进度同步于 [issue #6](https://github.com/bohack-2026-hw/QuotaCrux/issues/6)。
+后续沿公共 Runner/CLI/API、两台执行机独立推进及前端按 `study + variant` 展示协同衔接，具体进度同步于 issue #6。

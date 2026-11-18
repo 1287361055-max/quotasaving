@@ -377,7 +377,7 @@ P.routing.innerHTML = `<div class="rt"><div class="h">谁做决定</div><div cla
 const tile = (id, a, b) => `<div class="tile card"><div class="num" id="${id}">0</div><div class="a">${a}</div><div class="b">${b}</div></div>`
 P.func.innerHTML = tile('fn-a', 'PageRank', '稀疏矩阵直接迭代') + tile('fn-b', '一维卷积', 'float32 实数 FFT')
 P.ledger.innerHTML = tile('lg-a', '次交付', '全部通过最终测试') + tile('lg-b', '个候选', '通过外部裁判的验证') + tile('lg-c', '的时间', '花在等模型回复上')
-P.end.innerHTML = '<div class="url card"><div class="a">在预算里做研究，每一步都有据可查</div><div class="b">github.com/bohack-2026-hw/quotasaving</div></div><div class="qr card"><img src="./data/qr.svg"></div>'
+P.end.innerHTML = '<div class="url card"><div class="a">在预算里做研究，每一步都有据可查</div><div class="b">github.com/1287361055-max/quotasaving</div></div><div class="qr card"><img src="./data/qr.svg"></div>'
 const routeRows = [...P.routing.querySelectorAll('.rrow')]
 const wipe = $('wipe'), ui = $('ui')
 let wipeKey = null

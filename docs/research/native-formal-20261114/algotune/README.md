@@ -2,7 +2,7 @@
 
 > 历史准备档案：本轮原固定Qwen15轮与routing12轮已取消启动。下文保留当时的环境、校准与待冻结状态；当前完成范围、独立探索结果及交付状态见[本轮数据汇总](../../20261114-summary.md)。GC修复已进入main，旧准备命令仅供追溯。
 
-2026-11-14，执行机为本机 Mac，关联 [AlgoTune issue #4](https://github.com/bohack-2026-hw/QuotaCrux/issues/4) 与 [公共协议 issue #2](https://github.com/bohack-2026-hw/QuotaCrux/issues/2)。
+2026-11-14，执行机为本机 Mac，关联 AlgoTune issue #4 与 公共协议 issue #2。
 
 **本阶段状态：环境与两题 5 dev / 15 final 任务包已完成；当前校准为带保留观测的预检，尚未冻结；正式批次为 0/15。** 本目录不包含正式模型回复或 final 评测，SQLite 记录 `runs=0`、`model_calls=0`、`final evaluations=0`，API 支出为 0。正式批次启动需在公共协议冻结计时修订、唯一实验 SHA、三模式提示与哈希、价格快照和中央 run plan 后于安静窗口重校准。
 

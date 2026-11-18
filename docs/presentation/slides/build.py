@@ -748,7 +748,7 @@ qf = rect(s, 1494, 300, 350, 350, CARD, radius=12, line=RULE, line_w=1.5)
 qi = pic(s, A("qr.png"), 1519, 325, 300, 300)
 qt = T(s, 1494, 668, 350, 40, "扫码查看代码与报告", size=16, color=INK2, align="c")
 tl.fade(qt, 3300, 400)
-tl.fade(T(s, L, 930, 1000, 44, "github.com/bohack-2026-hw/quotasaving", size=17, color=INK2, latin=NUM), 3300, 500)
+tl.fade(T(s, L, 930, 1000, 44, "github.com/1287361055-max/quotasaving", size=17, color=INK2, latin=NUM), 3300, 500)
 
 for t in TLS:
     t.build()

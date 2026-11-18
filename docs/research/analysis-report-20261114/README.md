@@ -64,7 +64,7 @@ Mac 归档（提交 `5962203`）可单独重新分析：
 - 固定 Qwen 执行源码：990f598b87f7c93bd27b6ceef5751bbc2d39dd79。
 - 路由及 Mac 最终执行源码：912b20a4cfeb51af9c36d0679b23f0990abe862f。
 - [固定 Qwen 结果](../native-formal-20261114/ale/results/README.md)、[路由短批](../native-routing/20261114/short-results/README.md)、[停止长批](../native-routing/20261114/long-batch-stopped/README.md)。
-- [Mac 探索归档](https://github.com/bohack-2026-hw/QuotaCrux/tree/5962203315dc1c229cd6ef3255d06e2dc5745436/docs/research/mac-exploratory-20261114)及[导出一致性核验记录](https://github.com/bohack-2026-hw/QuotaCrux/pull/20#issuecomment-6875817264)。
+- Mac 探索归档及导出一致性核验记录。
 
 Mac 归档已完成导出恢复与校验（189 项清单、24 份候选、12 份最优程序与 16 份任务源码哈希一致，53 份归档程序通过语法检查；分析状态为 `verified_archive`，恢复记录见 [recovery.json](../mac-exploratory-20261114/recovery.json)）。
 

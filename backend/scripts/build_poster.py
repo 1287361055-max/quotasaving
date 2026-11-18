@@ -18,7 +18,7 @@ from pathlib import Path
 import segno
 
 ROOT = Path(__file__).resolve().parents[2]
-REPO = "https://github.com/bohack-2026-hw/quotasaving"
+REPO = "https://github.com/1287361055-max/quotasaving"
 CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 # Latin text and numbers in Inter; Chinese in Noto Sans SC (any machine) or PingFang SC (Mac, --cjk "PingFang SC")
