@@ -5,7 +5,6 @@ Runs are globally serial (one file lock) so model inference and other runs never
 
 from __future__ import annotations
 
-import fcntl
 import copy
 import hashlib
 import json
@@ -16,7 +15,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .. import config, db, evaluator, memory, report, taskpkg
+from .. import config, db, evaluator, filelock, memory, report, taskpkg
 from ..llm.base import LLMResult
 from ..llm.chat_compat import ChatCompatClient
 from ..llm.openai_responses import OpenAIResponsesClient
@@ -151,7 +150,7 @@ class Runner:
         config.VAR_DIR.mkdir(parents=True, exist_ok=True)
         fd = open(config.RUN_LOCK_PATH, "a+")
         try:
-            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            filelock.acquire(fd)
         except BlockingIOError:
             fd.close()
             raise RunBusy("another run is in progress; runs are serial so timings do not interfere") from None
@@ -205,7 +204,7 @@ class Runner:
 
     def _release(self) -> None:
         if self._lock_fd:
-            fcntl.flock(self._lock_fd, fcntl.LOCK_UN)
+            filelock.release(self._lock_fd)
             self._lock_fd.close()
             self._lock_fd = None
 

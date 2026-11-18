@@ -14,7 +14,8 @@ NEW = {
 
 
 def run_initial(fam, data: bytes) -> bytes:
-    return subprocess.run([sys.executable, str(fam.INITIAL_CODE_PATH)], input=data, capture_output=True, check=True).stdout
+    out = subprocess.run([sys.executable, str(fam.INITIAL_CODE_PATH)], input=data, capture_output=True, check=True).stdout
+    return out.replace(b"\r\n", b"\n")  # stdout newline translation differs on Windows
 
 
 def test_registry_has_every_family_and_hooks():

@@ -6,7 +6,8 @@ from quotacrux.families.groupagg import GenParams
 
 
 def run_initial(data: bytes) -> bytes:
-    return subprocess.run([sys.executable, str(groupagg.INITIAL_CODE_PATH)], input=data, capture_output=True, check=True).stdout
+    out = subprocess.run([sys.executable, str(groupagg.INITIAL_CODE_PATH)], input=data, capture_output=True, check=True).stdout
+    return out.replace(b"\r\n", b"\n")  # stdout newline translation differs on Windows
 
 
 def test_generator_is_deterministic():

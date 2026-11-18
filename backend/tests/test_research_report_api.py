@@ -147,10 +147,14 @@ def test_research_api_rejects_bad_identity_and_reports_corrupt_artifacts(tmp_pat
     root.mkdir()
     outside = tmp_path / "secret.json"
     outside.write_text('{"secret":"not exposed"}')
-    (root / "research-symlink.json").symlink_to(outside)
-    with pytest.raises(KeyError):
-        research_views.load("research-symlink")
-    (root / "research-symlink.json").unlink()
+    try:
+        (root / "research-symlink.json").symlink_to(outside)
+    except OSError:
+        pass  # Windows without symlink privilege cannot create the probe; the checks below still run
+    else:
+        with pytest.raises(KeyError):
+            research_views.load("research-symlink")
+        (root / "research-symlink.json").unlink()
     (root / "research-corrupt.json").write_text("{")
     with TestClient(api.app) as client:
         assert client.get("/api/research-comparisons/research-corrupt").status_code == 500

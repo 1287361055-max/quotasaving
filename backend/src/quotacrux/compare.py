@@ -6,7 +6,6 @@ serial and alternate the snapshot order per task and repeat. Nothing is written 
 
 from __future__ import annotations
 
-import fcntl
 import hashlib
 import json
 import statistics
@@ -14,7 +13,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import config, db, memory, report
+from . import config, db, filelock, memory, report
 from .agent.runner import RunOptions, Runner
 
 LOCK_PATH = config.VAR_DIR / "compare.lock"
@@ -24,7 +23,7 @@ def _try_lock():
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     fd = open(LOCK_PATH, "a+")
     try:
-        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        filelock.acquire(fd)
     except BlockingIOError:
         fd.close()
         return None
@@ -42,7 +41,7 @@ def recover_stale() -> None:
         db.get().execute("UPDATE comparisons SET status = 'interrupted', ended_at = COALESCE(ended_at, ?) WHERE status = 'running'",
                          (db.now(),))
     finally:
-        fcntl.flock(fd, fcntl.LOCK_UN)
+        filelock.release(fd)
         fd.close()
 
 
@@ -97,7 +96,7 @@ def execute(comparison_id: str) -> dict:
     try:
         return _execute(comparison_id)
     finally:
-        fcntl.flock(lock, fcntl.LOCK_UN)
+        filelock.release(lock)
         lock.close()
 
 

@@ -49,7 +49,7 @@ export function RunView({ runId, setRunId, activeSnapshot, onOpenExperience }: {
         <div className="startbar">
           <label className="field grow"><span>任务</span>
             <select value={taskId} onChange={(e) => setTaskId(e.target.value)} disabled={!tasks.data?.length}>
-              {(tasks.data ?? []).length === 0 && <option value="">接口未连接 · 暂无可用任务</option>}
+              {(tasks.data ?? []).length === 0 && <option value="">{tasks.error ? '接口未连接 · 暂无可用任务' : '暂无可用任务'}</option>}
               {groupTasks(tasks.data ?? []).map(([split, ts]) => (
                 <optgroup key={split} label={SPLIT[split] ?? split}>
                   {ts.map((t) => <option key={t.task_id} value={t.task_id}>{t.task_id} · {t.presentation?.workload ?? t.workload}</option>)}
