@@ -359,7 +359,7 @@
       },
       "concurrency": 1,
       "api_in_flight_limit": 1,
-      "calibration_artifact": "https://github.com/bohack-2026-hw/RouteEvo/blob/bdd78b85e448f591dab13babdc279ec7cd6cefe5/docs/research/native-formal-20261114/algotune/evidence/timing-observation.json",
+      "calibration_artifact": "docs/research/native-formal-20261114/algotune/evidence/timing-observation.json",
       "binding_note": "Historical v1 package only. Replace task ID, manifest, images and prompt hash with accepted GC v2 evidence before Mac freeze."
     }
   },
